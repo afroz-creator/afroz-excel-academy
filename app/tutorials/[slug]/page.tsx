@@ -1,5 +1,6 @@
 import LessonHero from "@/components/lesson/LessonHero";
 import LessonContent from "@/components/lesson/LessonContent";
+import LessonImage from "@/components/lesson/LessonImage";
 import LessonFeatures from "@/components/lesson/LessonFeatures";
 import LessonPractice from "@/components/lesson/LessonPractice";
 import LessonNavigation from "@/components/lesson/LessonNavigation";
@@ -47,6 +48,8 @@ export default async function TutorialPage({ params }: Props) {
       />
 
       <LessonContent />
+
+      <LessonImage />
 
       <LessonFeatures />
 
