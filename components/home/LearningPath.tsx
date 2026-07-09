@@ -1,4 +1,4 @@
-import Card from "@/components/ui/Card";
+import InfoCard from "@/components/ui/InfoCard";
 
 const levels = [
   {
@@ -40,12 +40,12 @@ export default function LearningPath() {
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {levels.map((level, index) => (
-            <Card
-              key={index}
-              title={level.title}
-              description={level.description}
-            />
-          ))}
+  <InfoCard
+    key={index}
+    title={level.title}
+    description={level.description}
+  />
+))}
         </div>
 
       </div>

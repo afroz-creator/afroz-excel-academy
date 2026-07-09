@@ -1,4 +1,4 @@
-import Card from "@/components/ui/Card";
+import TutorialCard from "@/components/ui/TutorialCard";
 
 const tutorials = [
   {
@@ -55,13 +55,13 @@ export default function TutorialGrid() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
           {tutorials.map((tutorial) => (
-            <Card
-              key={tutorial.slug}
-              title={tutorial.title}
-              description={tutorial.description}
-              slug={tutorial.slug}
-            />
-          ))}
+  <TutorialCard
+    key={tutorial.slug}
+    title={tutorial.title}
+    description={tutorial.description}
+    slug={tutorial.slug}
+  />
+))}
 
         </div>
 
