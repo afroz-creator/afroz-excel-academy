@@ -6,6 +6,8 @@ import LessonPractice from "@/components/lesson/LessonPractice";
 import LessonQuiz from "@/components/lesson/LessonQuiz";
 import LessonNavigation from "@/components/lesson/LessonNavigation";
 
+import LessonProgressSection from "@/components/progress/LessonProgressSection";
+
 import { tutorials } from "@/data/tutorials";
 import { lessons } from "@/data/lessons";
 
@@ -66,6 +68,19 @@ export default async function TutorialPage({ params }: Props) {
       <LessonPractice />
 
       <LessonQuiz />
+
+      <LessonProgressSection
+        currentSlug={tutorial.slug}
+        totalLessons={tutorials.length}
+        nextLesson={
+          next
+          ? {
+              title: next.title,
+              slug: next.slug,
+            }
+          : undefined
+        }
+      />
 
       <LessonNavigation
         previous={previous}
