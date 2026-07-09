@@ -2,6 +2,8 @@ import DashboardHero from "@/components/dashboard/DashboardHero";
 import ProgressSummary from "@/components/dashboard/ProgressSummary";
 import ContinueCard from "@/components/dashboard/ContinueCard";
 import AchievementCard from "@/components/dashboard/AchievementCard";
+import CertificateUnlock from "@/components/certificate/CertificateUnlock";
+import CertificatePreview from "@/components/certificate/CertificatePreview";
 
 export default function DashboardPage() {
   return (
@@ -14,6 +16,10 @@ export default function DashboardPage() {
       <ContinueCard />
 
       <AchievementCard />
+
+      <CertificateUnlock />
+
+      <CertificatePreview studentName="Afroz IT Solution" />
 
     </main>
   );
