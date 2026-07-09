@@ -1,27 +1,61 @@
+import Image from "next/image";
+import Link from "next/link";
 import { Search } from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <header className="sticky top-0 z-50 bg-white shadow-sm">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-        <div>
-          <h1 className="text-2xl font-bold text-green-700">
-            Afroz IT Solution
-          </h1>
-          <p className="text-xs text-gray-500">
-            Excel Academy
-          </p>
-        </div>
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-3">
 
-        <nav className="hidden md:flex gap-6">
-          <a href="#" className="hover:text-green-700">Home</a>
-          <a href="#" className="hover:text-green-700">Tutorials</a>
-          <a href="#" className="hover:text-green-700">Practice</a>
-          <a href="#" className="hover:text-green-700">Projects</a>
-          <a href="#" className="hover:text-green-700">Downloads</a>
+          <Image
+            src="/logo.png"
+            alt="Afroz Excel Academy"
+            width={70}
+            height={70}
+            priority
+          />
+
+          <div>
+            <h1 className="text-2xl font-bold text-green-700">
+              Afroz Excel Academy
+            </h1>
+
+            <p className="text-xs text-gray-500">
+              Powered by Afroz IT Solution
+            </p>
+          </div>
+
+        </Link>
+
+        {/* Navigation */}
+        <nav className="hidden md:flex gap-8 font-medium">
+
+          <Link href="/" className="hover:text-green-700">
+            Home
+          </Link>
+
+          <Link href="/tutorials/excel-basics" className="hover:text-green-700">
+            Tutorials
+          </Link>
+
+          <Link href="#" className="hover:text-green-700">
+            Practice
+          </Link>
+
+          <Link href="#" className="hover:text-green-700">
+            Projects
+          </Link>
+
+          <Link href="#" className="hover:text-green-700">
+            Downloads
+          </Link>
+
         </nav>
 
+        {/* Search Button */}
         <button className="p-2 rounded-lg hover:bg-gray-100">
           <Search size={20} />
         </button>
