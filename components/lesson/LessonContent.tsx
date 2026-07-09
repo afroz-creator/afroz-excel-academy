@@ -1,4 +1,14 @@
-export default function LessonContent() {
+interface LessonContentProps {
+  title: string;
+  description: string;
+  realLifeUses: string[];
+}
+
+export default function LessonContent({
+  title,
+  description,
+  realLifeUses,
+}: LessonContentProps) {
   return (
     <section className="max-w-6xl mx-auto px-6 py-16">
 
@@ -7,23 +17,14 @@ export default function LessonContent() {
       <div className="bg-white rounded-3xl shadow-lg p-10">
 
         <h2 className="text-4xl font-bold text-gray-800">
-          📖 What is Microsoft Excel?
+          {title}
         </h2>
 
         <p className="mt-8 text-lg leading-9 text-gray-600">
-          Microsoft Excel is one of the world's most popular spreadsheet
-          software developed by Microsoft.
-
-          It helps you organize data, perform calculations,
-          create charts, analyze information, and prepare professional reports.
-
-          Excel is widely used in offices, schools, banks,
-          hospitals, businesses, and industries.
+          {description}
         </p>
 
       </div>
-
-
 
       {/* Real Life Uses */}
 
@@ -34,12 +35,9 @@ export default function LessonContent() {
         </h2>
 
         <ul className="mt-8 space-y-4 text-lg text-gray-600">
-          <li>🏢 Office Management</li>
-          <li>🏫 Student Result</li>
-          <li>🏦 Banking Reports</li>
-          <li>🏥 Hospital Records</li>
-          <li>🏪 Shop Billing</li>
-          <li>🏭 Business Reports</li>
+          {realLifeUses.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
         </ul>
 
       </div>

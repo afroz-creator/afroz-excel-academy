@@ -3,9 +3,11 @@ import LessonContent from "@/components/lesson/LessonContent";
 import LessonImage from "@/components/lesson/LessonImage";
 import LessonFeatures from "@/components/lesson/LessonFeatures";
 import LessonPractice from "@/components/lesson/LessonPractice";
+import LessonQuiz from "@/components/lesson/LessonQuiz";
 import LessonNavigation from "@/components/lesson/LessonNavigation";
 
 import { tutorials } from "@/data/tutorials";
+import { lessons } from "@/data/lessons";
 
 interface Props {
   params: Promise<{
@@ -28,7 +30,11 @@ export default async function TutorialPage({ params }: Props) {
     );
   }
 
-  const lesson = tutorials[currentIndex];
+  const tutorial = tutorials[currentIndex];
+
+  const lessonData = lessons.find(
+    (lesson) => lesson.slug === slug
+  );
 
   const previous =
     currentIndex > 0 ? tutorials[currentIndex - 1] : undefined;
@@ -41,19 +47,25 @@ export default async function TutorialPage({ params }: Props) {
   return (
     <>
       <LessonHero
-        title={lesson.title}
-        level={lesson.level}
-        duration={lesson.duration}
-        module="Module 1"
+        title={tutorial.title}
+        level={tutorial.level}
+        duration={tutorial.duration}
+        module={lessonData?.hero.module ?? "Module 1"}
       />
 
-      <LessonContent />
+      <LessonContent
+        title={lessonData?.content.title ?? ""}
+        description={lessonData?.content.description ?? ""}
+        realLifeUses={lessonData?.realLifeUses ?? []}
+      />
 
       <LessonImage />
 
       <LessonFeatures />
 
       <LessonPractice />
+
+      <LessonQuiz />
 
       <LessonNavigation
         previous={previous}
