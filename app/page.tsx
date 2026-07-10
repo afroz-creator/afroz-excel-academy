@@ -1,4 +1,3 @@
-import Header from "@/components/layout/Header";
 import Hero from "@/components/home/Hero";
 import TutorialGrid from "@/components/home/TutorialGrid";
 import LearningPath from "@/components/home/LearningPath";
@@ -12,15 +11,22 @@ import Footer from "@/components/layout/Footer";
 export default function Home() {
   return (
     <>
-      <Header />
       <Hero />
+
       <TutorialGrid />
+
       <LearningPath />
+
       <StatsSection />
+
       <WhyChoose />
+
       <Testimonials />
+
       <FAQ />
+
       <Newsletter />
+
       <Footer />
     </>
   );

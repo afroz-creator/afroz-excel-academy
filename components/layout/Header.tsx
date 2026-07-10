@@ -5,11 +5,10 @@ import { Search } from "lucide-react";
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-6">
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
-
           <Image
             src="/logo.png"
             alt="Afroz Excel Academy"
@@ -27,7 +26,6 @@ export default function Header() {
               Powered by Afroz IT Solution
             </p>
           </div>
-
         </Link>
 
         {/* Navigation */}
@@ -37,7 +35,10 @@ export default function Header() {
             Home
           </Link>
 
-          <Link href="/tutorials/excel-basics" className="hover:text-green-700">
+          <Link
+            href="/tutorials/excel-basics"
+            className="hover:text-green-700"
+          >
             Tutorials
           </Link>
 
@@ -59,8 +60,8 @@ export default function Header() {
 
         </nav>
 
-        {/* Search Button */}
-        <button className="p-2 rounded-lg hover:bg-gray-100">
+        {/* Search */}
+        <button className="rounded-lg p-2 hover:bg-gray-100">
           <Search size={20} />
         </button>
 
