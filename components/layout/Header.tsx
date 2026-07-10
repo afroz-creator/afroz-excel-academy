@@ -41,15 +41,19 @@ export default function Header() {
             Tutorials
           </Link>
 
-          <Link href="#" className="hover:text-green-700">
+          <Link href="/dashboard" className="hover:text-green-700">
+            Dashboard
+          </Link>
+
+          <Link href="/practice" className="hover:text-green-700">
             Practice
           </Link>
 
-          <Link href="#" className="hover:text-green-700">
+          <Link href="/projects" className="hover:text-green-700">
             Projects
           </Link>
 
-          <Link href="#" className="hover:text-green-700">
+          <Link href="/downloads" className="hover:text-green-700">
             Downloads
           </Link>
 
