@@ -1,3 +1,5 @@
+import AuthGuard from "@/components/auth/AuthGuard";
+import UserWelcome from "@/components/dashboard/UserWelcome";
 import DashboardHero from "@/components/dashboard/DashboardHero";
 import StatisticsCards from "@/components/dashboard/StatisticsCards";
 import WeeklyProgress from "@/components/dashboard/WeeklyProgress";
@@ -10,26 +12,30 @@ import CertificatePreview from "@/components/certificate/CertificatePreview";
 
 export default function DashboardPage() {
   return (
-    <main className="max-w-7xl mx-auto px-6 py-8">
+    <AuthGuard>
+      <main className="mx-auto max-w-7xl px-6 py-8 space-y-8">
 
-      <DashboardHero />
+        <UserWelcome />
 
-      <StatisticsCards />
+        <DashboardHero />
 
-      <WeeklyProgress />
+        <StatisticsCards />
 
-      <ContinueLearning />
+        <WeeklyProgress />
 
-      <ProgressSummary />
+        <ContinueLearning />
 
-      <AchievementSystem />
+        <ProgressSummary />
 
-      <DownloadCenter />
+        <AchievementSystem />
 
-      <CertificateUnlock />
+        <DownloadCenter />
 
-      <CertificatePreview studentName="Afroz IT Solution" />
+        <CertificateUnlock />
 
-    </main>
+        <CertificatePreview studentName="Afroz IT Solution" />
+
+      </main>
+    </AuthGuard>
   );
 }
