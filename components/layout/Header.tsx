@@ -58,7 +58,11 @@ export default function Header() {
             Downloads
           </Link>
 
-        </nav>
+          </nav>
+         {/* Login Button */}
+          <Link href="/login" className="hidden md:inline-flex items-center rounded-xl bg-green-700 px-5 py-2.5 font-semibold text-white transition hover:bg-green-800">
+            Login
+          </Link>
 
         {/* Search */}
         <button className="rounded-lg p-2 hover:bg-gray-100">
