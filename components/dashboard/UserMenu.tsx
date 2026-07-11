@@ -1,28 +1,38 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { User, onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/lib/firebase";
-import { logoutUser } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
+
+import { logoutUser } from "@/lib/auth";
+import { getStudentProfile } from "@/lib/student";
+
+interface StudentProfile {
+  name: string;
+  email: string;
+  mobile: string;
+  role: string;
+}
 
 export default function UserMenu() {
   const router = useRouter();
 
-  const [user, setUser] = useState<User | null>(null);
+  const [student, setStudent] = useState<StudentProfile | null>(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
+    async function loadStudent() {
+      const data = await getStudentProfile();
 
-    return () => unsubscribe();
+      if (data) {
+        setStudent(data as StudentProfile);
+      }
+    }
+
+    loadStudent();
   }, []);
 
   async function handleLogout() {
     await logoutUser();
-
     router.replace("/login");
   }
 
@@ -32,16 +42,16 @@ export default function UserMenu() {
       <div className="flex items-center gap-4">
 
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-green-700 text-xl font-bold text-white">
-          {user?.displayName?.charAt(0).toUpperCase() || "A"}
+          {student?.name?.charAt(0).toUpperCase() || "S"}
         </div>
 
         <div>
           <h2 className="text-lg font-bold text-gray-900">
-            {user?.displayName || "Student"}
+            {student?.name}
           </h2>
 
           <p className="text-sm text-gray-500">
-            {user?.email}
+            {student?.email}
           </p>
         </div>
 

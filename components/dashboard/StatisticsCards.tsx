@@ -9,44 +9,60 @@ import {
 } from "lucide-react";
 
 import {
-  getProgress,
-  defaultProgress,
-} from "@/lib/storage";
+  getStudentProfile,
+  StudentProfile,
+} from "@/lib/student";
 
 export default function StatisticsCards() {
-  const [progress, setProgress] = useState(defaultProgress);
+  const [student, setStudent] = useState<StudentProfile | null>(null);
 
   useEffect(() => {
-    setProgress(getProgress());
+    async function loadStudent() {
+      const data = await getStudentProfile();
+
+      if (data) {
+        setStudent(data);
+      }
+    }
+
+    loadStudent();
   }, []);
+
+  if (!student) {
+    return (
+      <section className="mt-8">
+        <p className="text-center text-gray-500">
+          Loading Statistics...
+        </p>
+      </section>
+    );
+  }
 
   const stats = [
     {
       title: "Lessons Completed",
-      value: `${progress.lessonsCompleted}/${progress.totalLessons}`,
+      value: `${student.lessonsCompleted}/${student.totalLessons}`,
       icon: BookOpen,
       color: "text-blue-600",
       bg: "bg-blue-50",
     },
     {
       title: "Overall Progress",
-      value: `${Math.round(
-        (progress.lessonsCompleted / progress.totalLessons) * 100
-      )}%`,
+      value: `${student.progress}%`,
       icon: TrendingUp,
       color: "text-green-600",
       bg: "bg-green-50",
     },
     {
       title: "Learning Streak",
-      value: `${progress.streak} Days`,
+      value: `${student.streak} Days`,
       icon: Flame,
       color: "text-orange-600",
       bg: "bg-orange-50",
     },
     {
       title: "Certificates",
-      value: `${progress.certificates}`,
+      value: `${student.certificates}`,
       icon: Trophy,
       color: "text-yellow-600",
       bg: "bg-yellow-50",
@@ -54,8 +70,9 @@ export default function StatisticsCards() {
   ];
 
   return (
-    <section className="mt-10">
+    <section className="mt-8">
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+
         {stats.map((item) => {
           const Icon = item.icon;
 
@@ -86,6 +103,7 @@ export default function StatisticsCards() {
             </div>
           );
         })}
+
       </div>
     </section>
   );

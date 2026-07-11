@@ -35,15 +35,30 @@ export async function registerUser(
   }
 
   await setDoc(doc(db, "students", userCredential.user.uid), {
+    // Basic Info
     uid: userCredential.user.uid,
     name,
     email,
     mobile,
     role: "student",
+
+    // Learning Progress
     progress: 0,
-    certificates: 0,
+    lessonsCompleted: 0,
+    totalLessons: 100,
+    currentLesson: 1,
+
+    // Achievement
     streak: 0,
+    certificates: 0,
+
+    // Status
+    isActive: true,
+
+    // Dates
     createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+    lastLogin: serverTimestamp(),
   });
 
   return userCredential.user;

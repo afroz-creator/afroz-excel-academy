@@ -1,3 +1,4 @@
+import CompleteLessonButton from "@/components/dashboard/CompleteLessonButton";
 import UserMenu from "@/components/dashboard/UserMenu";
 import AuthGuard from "@/components/auth/AuthGuard";
 import UserWelcome from "@/components/dashboard/UserWelcome";
@@ -19,6 +20,8 @@ export default function DashboardPage() {
         <UserWelcome />
 
         <UserMenu />
+
+        <CompleteLessonButton />
 
         <DashboardHero />
 
