@@ -1,10 +1,50 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { registerUser } from "@/lib/auth";
+
 export default function RegisterPage() {
+  const router = useRouter();
+
+  const [name, setName] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleRegister(e: React.FormEvent) {
+    e.preventDefault();
+
+    setError("");
+
+    if (!name || !mobile || !email || !password) {
+      setError("Please fill all fields.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      await registerUser(name, email, password);
+
+      alert("Registration Successful!");
+
+      router.push("/login");
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-yellow-50 px-6 py-12">
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-yellow-50 px-6">
+      <div className="w-full max-w-md rounded-3xl border border-gray-200 bg-white p-10 shadow-2xl">
 
-      <div className="w-full max-w-lg rounded-3xl border border-gray-200 bg-white p-10 shadow-2xl">
-
-        {/* Heading */}
         <div className="text-center">
           <h1 className="text-4xl font-bold text-green-700">
             Create Your Account
@@ -15,78 +55,67 @@ export default function RegisterPage() {
           </p>
         </div>
 
-        {/* Form */}
-        <form className="mt-10 space-y-5">
+        <form onSubmit={handleRegister} className="mt-10 space-y-5">
 
-          <div>
-            <label className="mb-2 block text-sm font-medium">
-              Full Name
-            </label>
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full rounded-xl border border-gray-300 px-4 py-3"
+          />
 
-            <input
-              type="text"
-              placeholder="Enter your full name"
-              className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-green-700"
-            />
-          </div>
+          <input
+            type="tel"
+            placeholder="Mobile Number"
+            value={mobile}
+            onChange={(e) => setMobile(e.target.value)}
+            className="w-full rounded-xl border border-gray-300 px-4 py-3"
+          />
 
-          <div>
-            <label className="mb-2 block text-sm font-medium">
-              Email Address
-            </label>
+          <input
+            type="email"
+            placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full rounded-xl border border-gray-300 px-4 py-3"
+          />
 
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-green-700"
-            />
-          </div>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full rounded-xl border border-gray-300 px-4 py-3"
+          />
 
-          <div>
-            <label className="mb-2 block text-sm font-medium">
-              Mobile Number
-            </label>
-
-            <input
-              type="tel"
-              placeholder="Enter your mobile number"
-              className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-green-700"
-            />
-          </div>
-
-          <div>
-            <label className="mb-2 block text-sm font-medium">
-              Password
-            </label>
-
-            <input
-              type="password"
-              placeholder="Create a password"
-              className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-green-700"
-            />
-          </div>
+          {error && (
+            <p className="text-sm text-red-600">
+              {error}
+            </p>
+          )}
 
           <button
-            className="mt-4 w-full rounded-xl bg-green-700 py-3 font-semibold text-white transition hover:bg-green-800"
+            type="submit"
+            disabled={loading}
+            className="w-full rounded-xl bg-green-700 py-3 font-semibold text-white hover:bg-green-800 disabled:opacity-60"
           >
-            Create Account
+            {loading ? "Creating Account..." : "Create Account"}
           </button>
 
         </form>
 
-        {/* Footer */}
         <p className="mt-8 text-center text-sm text-gray-500">
-          Already have an account?
-          <a
+          Already have an account?{" "}
+          <Link
             href="/login"
-            className="ml-1 font-semibold text-green-700 hover:underline"
+            className="font-semibold text-green-700 hover:underline"
           >
             Login
-          </a>
+          </Link>
         </p>
 
       </div>
-
     </main>
   );
 }
