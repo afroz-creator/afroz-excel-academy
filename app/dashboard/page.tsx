@@ -1,3 +1,4 @@
+import UserMenu from "@/components/dashboard/UserMenu";
 import AuthGuard from "@/components/auth/AuthGuard";
 import UserWelcome from "@/components/dashboard/UserWelcome";
 import DashboardHero from "@/components/dashboard/DashboardHero";
@@ -16,6 +17,8 @@ export default function DashboardPage() {
       <main className="mx-auto max-w-7xl px-6 py-8 space-y-8">
 
         <UserWelcome />
+
+        <UserMenu />
 
         <DashboardHero />
 

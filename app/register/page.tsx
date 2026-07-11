@@ -29,7 +29,7 @@ export default function RegisterPage() {
     try {
       setLoading(true);
 
-      await registerUser(name, email, password);
+      await registerUser(name, email, mobile, password);
 
       alert("Registration Successful!");
 

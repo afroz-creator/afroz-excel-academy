@@ -5,7 +5,13 @@ import {
   updateProfile,
 } from "firebase/auth";
 
-import { auth } from "./firebase";
+import {
+  doc,
+  setDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+
+import { auth, db } from "./firebase";
 
 /**
  * Register User
@@ -13,6 +19,7 @@ import { auth } from "./firebase";
 export async function registerUser(
   name: string,
   email: string,
+  mobile: string,
   password: string
 ) {
   const userCredential = await createUserWithEmailAndPassword(
@@ -26,6 +33,18 @@ export async function registerUser(
       displayName: name,
     });
   }
+
+  await setDoc(doc(db, "students", userCredential.user.uid), {
+    uid: userCredential.user.uid,
+    name,
+    email,
+    mobile,
+    role: "student",
+    progress: 0,
+    certificates: 0,
+    streak: 0,
+    createdAt: serverTimestamp(),
+  });
 
   return userCredential.user;
 }
