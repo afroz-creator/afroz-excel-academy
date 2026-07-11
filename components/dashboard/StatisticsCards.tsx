@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import {
   BookOpen,
   Trophy,
@@ -8,32 +7,22 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-import {
-  getStudentProfile,
-  StudentProfile,
-} from "@/lib/student";
+import { useStudent } from "@/context/StudentContext";
 
 export default function StatisticsCards() {
-  const [student, setStudent] = useState<StudentProfile | null>(null);
+  const { student, loading } = useStudent();
 
-  useEffect(() => {
-    async function loadStudent() {
-      const data = await getStudentProfile();
-
-      if (data) {
-        setStudent(data);
-      }
-    }
-
-    loadStudent();
-  }, []);
-
-  if (!student) {
+  if (loading || !student) {
     return (
-      <section className="mt-8">
-        <p className="text-center text-gray-500">
-          Loading Statistics...
-        </p>
+      <section>
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {[1, 2, 3, 4].map((item) => (
+            <div
+              key={item}
+              className="h-36 animate-pulse rounded-2xl bg-gray-200"
+            />
+          ))}
+        </div>
       </section>
     );
   }
@@ -42,68 +31,74 @@ export default function StatisticsCards() {
     {
       title: "Lessons Completed",
       value: `${student.lessonsCompleted}/${student.totalLessons}`,
+      subtitle: "Keep Learning",
       icon: BookOpen,
       color: "text-blue-600",
-      bg: "bg-blue-50",
+      bg: "from-blue-500 to-cyan-500",
     },
     {
       title: "Overall Progress",
       value: `${student.progress}%`,
+      subtitle: "Course Completed",
       icon: TrendingUp,
       color: "text-green-600",
-      bg: "bg-green-50",
+      bg: "from-green-500 to-emerald-500",
     },
     {
       title: "Learning Streak",
       value: `${student.streak} Days`,
+      subtitle: "Stay Consistent",
       icon: Flame,
       color: "text-orange-600",
-      bg: "bg-orange-50",
+      bg: "from-orange-500 to-red-500",
     },
     {
       title: "Certificates",
       value: `${student.certificates}`,
+      subtitle: "Achievements Earned",
       icon: Trophy,
       color: "text-yellow-600",
-      bg: "bg-yellow-50",
+      bg: "from-yellow-500 to-amber-500",
     },
   ];
 
   return (
-    <section className="mt-8">
+    <section>
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-
         {stats.map((item) => {
           const Icon = item.icon;
 
           return (
             <div
               key={item.title}
-              className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              className="group rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
               <div className="flex items-center justify-between">
 
                 <div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm font-medium text-gray-500">
                     {item.title}
                   </p>
 
-                  <h2 className="mt-2 text-3xl font-bold text-gray-900">
+                  <h2 className="mt-3 text-4xl font-extrabold text-gray-900">
                     {item.value}
                   </h2>
+
+                  <p className="mt-2 text-sm text-gray-400">
+                    {item.subtitle}
+                  </p>
                 </div>
 
                 <div
-                  className={`flex h-14 w-14 items-center justify-center rounded-xl ${item.bg}`}
+                  className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-r ${item.bg} shadow-lg transition-transform duration-300 group-hover:scale-110`}
                 >
-                  <Icon className={`h-7 w-7 ${item.color}`} />
+                  <Icon className="h-8 w-8 text-white" />
                 </div>
 
               </div>
             </div>
           );
         })}
-
       </div>
     </section>
   );

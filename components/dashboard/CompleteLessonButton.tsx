@@ -51,7 +51,7 @@ export default function CompleteLessonButton() {
 
       alert("🎉 Lesson Completed!");
 
-      window.location.reload();
+      
     } catch (error) {
       console.error(error);
       alert("Something went wrong!");
