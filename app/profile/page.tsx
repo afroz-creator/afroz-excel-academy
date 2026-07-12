@@ -1,7 +1,7 @@
 import AuthGuard from "@/components/auth/AuthGuard";
 
 import ProfileHeader from "@/components/profile/ProfileHeader";
-
+import PersonalInfo from "@/components/profile/PersonalInfo";
 import LearningStats from "@/components/profile/LearningStats";
 import AccountSettings from "@/components/profile/AccountSettings";
 
@@ -14,7 +14,8 @@ export default function ProfilePage() {
 
         <div className="grid gap-8 lg:grid-cols-2">
 
-          
+          <PersonalInfo/>
+
           <LearningStats />
 
         </div>
