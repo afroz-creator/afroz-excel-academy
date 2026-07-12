@@ -1,34 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { ReactNode } from "react";
 
-import Button from "@/components/ui/Button";
-import Modal from "@/components/ui/Modal";
+interface ModalProps {
+  open: boolean;
+  onClose: () => void;
+  title: string;
+  children: ReactNode;
+}
 
-export default function TestPage() {
-  const [open, setOpen] = useState(false);
+export default function Modal({
+  open,
+  onClose,
+  title,
+  children,
+}: ModalProps) {
+  if (!open) return null;
 
   return (
-    <div className="mt-20 flex justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+      <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold">{title}</h2>
 
-      <Button onClick={() => setOpen(true)}>
-        Open Modal
-      </Button>
+          <button
+            onClick={onClose}
+            className="text-2xl text-gray-500 hover:text-black"
+          >
+            ×
+          </button>
+        </div>
 
-      <Modal
-        open={open}
-        onClose={() => setOpen(false)}
-        title="Test Modal"
-      >
-        <p className="text-gray-700">
-          🎉 Congratulations!
-
-          <br /><br />
-
-          Your reusable Modal component is working successfully.
-        </p>
-      </Modal>
-
+        {children}
+      </div>
     </div>
   );
 }
