@@ -1,8 +1,9 @@
+import type { LessonType } from "@/data/excelCourse";
 interface LessonPlayerContentProps {
   title: string;
   description: string;
   duration: string;
-  type: "Video" | "PDF" | "Quiz";
+  type: string;
   module: string;
 }
 

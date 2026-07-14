@@ -1,4 +1,30 @@
-export const excelCourse = {
+export type LessonType = "Video" | "PDF" | "Quiz";
+
+export interface Lesson {
+  id: number;
+  title: string;
+  description: string;
+  duration: string;
+  type: LessonType;
+  completed: boolean;
+  locked: boolean;
+}
+
+export interface Module {
+  id: number;
+  title: string;
+  lessons: Lesson[];
+}
+
+export interface ExcelCourse {
+  id: string;
+  title: string;
+  instructor: string;
+  progress: number;
+  modules: Module[];
+}
+
+export const excelCourse: ExcelCourse = {
   id: "excel-masterclass",
   title: "Advanced Excel Masterclass",
   instructor: "Afroz IT Solution",
