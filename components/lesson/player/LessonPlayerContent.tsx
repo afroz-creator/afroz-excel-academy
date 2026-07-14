@@ -14,63 +14,91 @@ export default function LessonPlayerContent({
   module,
 }: LessonPlayerContentProps) {
   return (
-    <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-      {/* Header */}
-      <div className="mb-8">
-        <p className="text-sm font-medium text-blue-600">{module}</p>
+    <div className="space-y-6">
 
-        <h1 className="mt-2 text-3xl font-bold text-gray-900">
-          {title}
-        </h1>
+      {/* Video Card */}
+      <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
 
-        <p className="mt-4 leading-8 text-gray-600">
-          {description}
-        </p>
-      </div>
+        <div className="flex aspect-video items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700">
 
-      {/* Video Placeholder */}
-      <div className="mb-8 overflow-hidden rounded-2xl border border-gray-200 bg-gray-100">
-        <div className="flex aspect-video items-center justify-center">
-          <div className="text-center">
-            <div className="mb-4 text-6xl">🎥</div>
+          <div className="text-center text-white">
 
-            <h2 className="text-2xl font-bold text-gray-800">
+            <div className="mb-6 text-7xl">
+              ▶️
+            </div>
+
+            <h2 className="text-3xl font-bold">
               Video Player
             </h2>
 
-            <p className="mt-2 text-gray-500">
-              Coming in Package 11 – Step 4
+            <p className="mt-3 text-slate-300">
+              Video integration will be added in Package 11 – Step 6
             </p>
+
           </div>
+
         </div>
+
+      </div>
+
+      {/* Lesson Details */}
+      <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
+
+        <span className="inline-block rounded-full bg-blue-100 px-4 py-1 text-sm font-semibold text-blue-700">
+          {module}
+        </span>
+
+        <h1 className="mt-5 text-4xl font-bold text-gray-900">
+          {title}
+        </h1>
+
+        <p className="mt-6 leading-8 text-gray-600">
+          {description}
+        </p>
+
       </div>
 
       {/* Lesson Info */}
-      <div className="grid gap-4 md:grid-cols-3">
-        <div className="rounded-xl border p-5">
-          <p className="text-sm text-gray-500">Duration</p>
+      <div className="grid gap-5 md:grid-cols-3">
 
-          <h3 className="mt-2 text-lg font-semibold">
+        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+
+          <p className="text-sm text-gray-500">
+            Duration
+          </p>
+
+          <h3 className="mt-2 text-xl font-bold text-gray-900">
             {duration}
           </h3>
+
         </div>
 
-        <div className="rounded-xl border p-5">
-          <p className="text-sm text-gray-500">Lesson Type</p>
+        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
 
-          <h3 className="mt-2 text-lg font-semibold">
+          <p className="text-sm text-gray-500">
+            Lesson Type
+          </p>
+
+          <h3 className="mt-2 text-xl font-bold text-gray-900">
             {type}
           </h3>
+
         </div>
 
-        <div className="rounded-xl border p-5">
-          <p className="text-sm text-gray-500">Module</p>
+        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
 
-          <h3 className="mt-2 text-lg font-semibold">
+          <p className="text-sm text-gray-500">
+            Module
+          </p>
+
+          <h3 className="mt-2 text-xl font-bold text-gray-900">
             {module}
           </h3>
+
         </div>
+
       </div>
-    </section>
+
+    </div>
   );
 }

@@ -9,29 +9,30 @@ export default function LessonSidebar() {
   const currentLessonId = Number(params.id);
 
   return (
-    <aside className="rounded-2xl border border-gray-200 bg-white shadow-sm">
+    <aside className="sticky top-24 h-fit overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
+
       {/* Header */}
-      <div className="border-b p-5">
-        <h2 className="text-lg font-bold text-gray-900">
+      <div className="border-b bg-gradient-to-r from-blue-600 to-blue-500 p-6 text-white">
+        <h2 className="text-xl font-bold">
           {excelCourse.title}
         </h2>
 
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-blue-100">
           {excelCourse.instructor}
         </p>
 
-        {/* Progress */}
         <div className="mt-5">
           <div className="mb-2 flex justify-between text-sm">
             <span>Progress</span>
+
             <span className="font-semibold">
               {excelCourse.progress}%
             </span>
           </div>
 
-          <div className="h-2 rounded-full bg-gray-200">
+          <div className="h-2 rounded-full bg-blue-300/40">
             <div
-              className="h-2 rounded-full bg-blue-600 transition-all"
+              className="h-2 rounded-full bg-white transition-all"
               style={{
                 width: `${excelCourse.progress}%`,
               }}
@@ -40,15 +41,18 @@ export default function LessonSidebar() {
         </div>
       </div>
 
-      {/* Modules */}
-      <div className="max-h-[650px] overflow-y-auto p-4">
+      {/* Lesson List */}
+      <div className="max-h-[650px] overflow-y-auto p-5">
+
         {excelCourse.modules.map((module) => (
-          <div key={module.id} className="mb-6">
-            <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-gray-500">
+          <div key={module.id} className="mb-8">
+
+            <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-gray-500">
               {module.title}
             </h3>
 
             <div className="space-y-2">
+
               {module.lessons.map((lesson) => {
                 const active =
                   lesson.id === currentLessonId;
@@ -57,45 +61,60 @@ export default function LessonSidebar() {
                   <Link
                     key={lesson.id}
                     href={`/course/excel/lesson/${lesson.id}`}
-                    className={`flex items-center justify-between rounded-xl border p-3 transition-all
+                    className={`
+                      flex items-center justify-between rounded-2xl border p-4 transition-all duration-200
 
-                    ${
-                      active
-                        ? "border-blue-600 bg-blue-50"
-                        : "border-gray-200 hover:bg-gray-50"
-                    }
+                      ${
+                        active
+                          ? "border-blue-600 bg-blue-50 shadow-sm"
+                          : "border-gray-200 hover:border-blue-300 hover:bg-gray-50"
+                      }
 
-                    ${
-                      lesson.locked
-                        ? "cursor-not-allowed opacity-60"
-                        : ""
-                    }
+                      ${
+                        lesson.locked
+                          ? "opacity-60"
+                          : ""
+                      }
                     `}
                   >
                     <div>
-                      <p className="font-medium">
+
+                      <p
+                        className={`font-semibold ${
+                          active
+                            ? "text-blue-700"
+                            : "text-gray-800"
+                        }`}
+                      >
                         {lesson.title}
                       </p>
 
-                      <p className="text-xs text-gray-500">
+                      <p className="mt-1 text-xs text-gray-500">
                         {lesson.duration}
                       </p>
+
                     </div>
 
                     <div className="text-xl">
+
                       {lesson.completed
                         ? "✅"
                         : lesson.locked
                         ? "🔒"
                         : "▶️"}
+
                     </div>
                   </Link>
                 );
               })}
+
             </div>
+
           </div>
         ))}
+
       </div>
+
     </aside>
   );
 }
