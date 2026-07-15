@@ -1,3 +1,4 @@
+import { lesson1 } from "@/data/lessons/lesson1";
 import { notFound } from "next/navigation";
 
 import LessonHeader from "@/components/lesson/LessonHeader";
@@ -62,13 +63,7 @@ export default async function LessonPage({
         {/* Main Content */}
         <div className="space-y-6 lg:col-span-3">
 
-          <LessonPlayerContent
-            title={currentLesson.title}
-            description={currentLesson.description}
-            duration={currentLesson.duration}
-            type={currentLesson.type}
-            module={currentLesson.moduleTitle}
-          />
+          <LessonPlayerContent lesson={lesson1} />
 
           <LessonNavigation
             previousLesson={previousLesson?.id}

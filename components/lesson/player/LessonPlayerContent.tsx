@@ -1,23 +1,25 @@
-import type { LessonType } from "@/data/excelCourse";
+import type { Lesson } from "@/types/lesson";
+
+import ExplanationBox from "@/components/lesson/ui/ExplanationBox";
+import TipBox from "@/components/lesson/ui/TipBox";
+import WarningBox from "@/components/lesson/ui/WarningBox";
+import FormulaBox from "@/components/lesson/ui/FormulaBox";
+import PracticeBox from "@/components/lesson/ui/PracticeBox";
+import ImageBox from "@/components/lesson/ui/ImageBox";
+import DownloadBox from "@/components/lesson/ui/DownloadBox";
+import QuizBox from "@/components/lesson/ui/QuizBox";
+
 interface LessonPlayerContentProps {
-  title: string;
-  description: string;
-  duration: string;
-  type: string;
-  module: string;
+  lesson: Lesson;
 }
 
 export default function LessonPlayerContent({
-  title,
-  description,
-  duration,
-  type,
-  module,
+  lesson,
 }: LessonPlayerContentProps) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
 
-      {/* Video Card */}
+      {/* Video */}
       <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
 
         <div className="flex aspect-video items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700">
@@ -29,11 +31,11 @@ export default function LessonPlayerContent({
             </div>
 
             <h2 className="text-3xl font-bold">
-              Video Player
+              Lesson Preview
             </h2>
 
             <p className="mt-3 text-slate-300">
-              Video integration will be added in Package 11 – Step 6
+              Video will be added later.
             </p>
 
           </div>
@@ -42,63 +44,76 @@ export default function LessonPlayerContent({
 
       </div>
 
-      {/* Lesson Details */}
+      {/* Lesson Header */}
       <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
 
-        <span className="inline-block rounded-full bg-blue-100 px-4 py-1 text-sm font-semibold text-blue-700">
-          {module}
+        <span className="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+          {lesson.module}
         </span>
 
         <h1 className="mt-5 text-4xl font-bold text-gray-900">
-          {title}
+          {lesson.title}
         </h1>
 
-        <p className="mt-6 leading-8 text-gray-600">
-          {description}
-        </p>
+        <div className="mt-5 flex gap-6 text-gray-600">
 
-      </div>
+          <span>⏱ {lesson.duration}</span>
 
-      {/* Lesson Info */}
-      <div className="grid gap-5 md:grid-cols-3">
-
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-
-          <p className="text-sm text-gray-500">
-            Duration
-          </p>
-
-          <h3 className="mt-2 text-xl font-bold text-gray-900">
-            {duration}
-          </h3>
-
-        </div>
-
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-
-          <p className="text-sm text-gray-500">
-            Lesson Type
-          </p>
-
-          <h3 className="mt-2 text-xl font-bold text-gray-900">
-            {type}
-          </h3>
-
-        </div>
-
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-
-          <p className="text-sm text-gray-500">
-            Module
-          </p>
-
-          <h3 className="mt-2 text-xl font-bold text-gray-900">
-            {module}
-          </h3>
+          <span>📘 {lesson.type}</span>
 
         </div>
 
       </div>
+
+      {/* Explanation */}
+      <ExplanationBox title="What will you learn?">
+        {lesson.explanation.map((item, index) => (
+          <p key={index}>{item}</p>
+        ))}
+      </ExplanationBox>
+
+      {/* Image */}
+      {lesson.image && (
+        <ImageBox
+          src={lesson.image.src}
+          alt={lesson.image.alt}
+          caption={lesson.image.caption}
+        />
+      )}
+
+      {/* Tip */}
+      <TipBox>
+        {lesson.tip}
+      </TipBox>
+
+      {/* Warning */}
+      <WarningBox>
+        {lesson.warning}
+      </WarningBox>
+
+      {/* Formula */}
+      <FormulaBox
+        title={lesson.formula.title}
+        formula={lesson.formula.code}
+        explanation={lesson.formula.explanation}
+      />
+
+      {/* Practice */}
+      <PracticeBox
+        tasks={lesson.practice}
+      />
+
+      {/* Downloads */}
+      <DownloadBox
+        files={lesson.downloads}
+      />
+
+      {/* Quiz */}
+      <QuizBox
+        question={lesson.quiz.question}
+        options={lesson.quiz.options}
+        correctAnswer={lesson.quiz.correctAnswer}
+      />
 
     </div>
   );
