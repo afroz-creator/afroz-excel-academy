@@ -8,6 +8,12 @@ export interface DownloadFile {
   title: string;
   fileName: string;
   href: string;
+
+  type: string;
+
+  size: string;
+
+  description: string;
 }
 
 export interface Quiz {
@@ -16,8 +22,28 @@ export interface Quiz {
   correctAnswer: number;
 }
 
+export interface HistoryItem {
+  year: string;
+  title: string;
+  description: string;
+}
+
+export interface ComparisonRow {
+  workbook: string;
+  worksheet: string;
+}
+
+export interface ExcelInterfaceItem {
+  name: string;
+  description: string;
+}
+
+export interface ShortcutItem {
+  key: string;
+  action: string;
+}
+
 export interface Lesson {
-  // Basic Information
   id: number;
 
   title: string;
@@ -30,16 +56,35 @@ export interface Lesson {
 
   description: string;
 
-  // 🖼️ Hero Banner Image
-  heroImage: string;
+  // 🖼 Hero Banner
+  heroImage?: string;
 
   // 🎯 Learning Objectives
   learningObjectives: string[];
 
-  // 📖 Main Lesson Content
+  // 📜 History Timeline
+  history: HistoryItem[];
+
+  // 📖 Lesson Explanation
   explanation: string[];
 
-  // 💡 Pro Tip
+  // 📊 Workbook vs Worksheet
+  comparison: ComparisonRow[];
+
+  // 🖼 Comparison Image
+  comparisonImage?: {
+    src: string;
+    alt: string;
+    caption?: string;
+  };
+
+  // 🖥 Excel Interface Parts
+  excelInterface: ExcelInterfaceItem[];
+
+  // ⌨ Shortcut Keys
+  shortcuts: ShortcutItem[];
+
+  // 💡 Tip
   tip: string;
 
   // 🌍 Did You Know
@@ -48,7 +93,7 @@ export interface Lesson {
   // ❌ Common Mistake
   commonMistake: string;
 
-  // ⚠️ Warning
+  // ⚠ Warning
   warning: string;
 
   // ➕ Formula
@@ -57,13 +102,13 @@ export interface Lesson {
   // 💻 Practice
   practice: string[];
 
-  // 📚 Lesson Summary
+  // 📚 Summary
   summary: string[];
 
   // 📝 Assignment
   assignment: string[];
 
-  // 🖼️ Lesson Content Image
+  // 🖼 Lesson Image
   image?: {
     src: string;
     alt: string;

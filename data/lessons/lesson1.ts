@@ -26,6 +26,40 @@ export const lesson1: Lesson = {
     "Apni pehli Excel Workbook banana.",
   ],
 
+  // 📜 History Timeline
+  history: [
+    {
+      year: "1985",
+      title: "Excel Ka Janm",
+      description:
+        "Microsoft ne sabse pehla Excel Version Apple Macintosh ke liye launch kiya.",
+    },
+    {
+      year: "1987",
+      title: "Windows Version",
+      description:
+        "Microsoft Excel pehli baar Windows Operating System ke liye release hua.",
+    },
+    {
+      year: "1993",
+      title: "Excel 5.0",
+      description:
+        "Is version me Workbook support aur bahut saare naye features add kiye gaye.",
+    },
+    {
+      year: "2007",
+      title: "Ribbon Interface",
+      description:
+        "Microsoft ne Ribbon Interface introduce kiya jisse Excel use karna aur bhi aasaan ho gaya.",
+    },
+    {
+      year: "2019 - Present",
+      title: "Modern Excel",
+      description:
+        "Aaj Excel me Charts, Pivot Table, Power Query, AI Features aur bahut advanced tools available hain.",
+    },
+  ],
+
   // 📖 Lesson Explanation
   explanation: [
     "Microsoft Excel ek Spreadsheet Software hai jo Microsoft ne develop kiya hai.",
@@ -34,6 +68,126 @@ export const lesson1: Lesson = {
     "Har chhota box Cell kehlata hai jisme hum data enter karte hain.",
     "Excel ka istemal School, Office, Shop, Bank aur Business me bahut zyada hota hai.",
     "Excel ki madad se hum seconds me Total, Average aur Reports bana sakte hain.",
+  ],
+
+  // 📊 Workbook vs Worksheet Comparison
+  comparison: [
+    {
+      workbook: "Workbook ek poori Excel File hoti hai.",
+      worksheet: "Worksheet Workbook ke andar ek Sheet hoti hai.",
+    },
+    {
+      workbook: "Ek Workbook me bahut saari Worksheets ho sakti hain.",
+      worksheet: "Worksheet sirf ek single sheet hoti hai.",
+    },
+    {
+      workbook: "Workbook ka Extension .xlsx hota hai.",
+      worksheet: "Worksheet ka koi alag file extension nahi hota.",
+    },
+    {
+      workbook: "Workbook ko Save aur Open kiya ja sakta hai.",
+      worksheet: "Worksheet ko Workbook ke andar hi use kiya jata hai.",
+    },
+    {
+      workbook: "Example: StudentData.xlsx",
+      worksheet: "Example: Sheet1, Sheet2, Sheet3",
+    },
+  ],
+
+  // 🖼 Workbook vs Worksheet Image
+  comparisonImage: {
+    src: "/images/excel/lesson1/workbook-vs-worksheet.png",
+    alt: "Workbook vs Worksheet",
+    caption: "Workbook aur Worksheet ka Difference",
+  },
+
+  // interface
+  excelInterface: [
+  {
+    name: "Title Bar",
+    description:
+      "Yahan Workbook ka naam aur Microsoft Excel ka naam dikhai deta hai."
+  },
+  {
+    name: "Quick Access Toolbar",
+    description:
+      "Yahan Save, Undo aur Redo jaise important buttons hote hain."
+  },
+  {
+    name: "Ribbon",
+    description:
+      "Ribbon me Excel ke saare tools aur commands hote hain."
+  },
+  {
+    name: "Name Box",
+    description:
+      "Ye currently selected Cell ka address batata hai."
+  },
+  {
+    name: "Formula Bar",
+    description:
+      "Formula likhne aur edit karne ke liye use hota hai."
+  },
+  {
+    name: "Worksheet Area",
+    description:
+      "Yahi main area hai jahan data enter kiya jata hai."
+  },
+  {
+    name: "Sheet Tabs",
+    description:
+      "Ek Workbook ke andar alag-alag Worksheets yahan hoti hain."
+  },
+  {
+    name: "Status Bar",
+    description:
+      "Neeche Status Bar me Zoom aur calculation information hoti hai."
+  }
+  ],
+
+  // Shortcuts
+  // ⌨ Excel Shortcut Keys
+shortcuts: [
+  {
+    key: "Ctrl + N",
+    action: "Nayi Workbook Banana",
+  },
+  {
+    key: "Ctrl + O",
+    action: "Existing Workbook Open Karna",
+  },
+  {
+    key: "Ctrl + S",
+    action: "Workbook Save Karna",
+  },
+  {
+    key: "Ctrl + C",
+    action: "Selected Data Copy Karna",
+  },
+  {
+    key: "Ctrl + V",
+    action: "Copied Data Paste Karna",
+  },
+  {
+    key: "Ctrl + X",
+    action: "Selected Data Cut Karna",
+  },
+  {
+    key: "Ctrl + Z",
+    action: "Last Action Undo Karna",
+  },
+  {
+    key: "Ctrl + Y",
+    action: "Undo Ko Redo Karna",
+  },
+  {
+    key: "Ctrl + B",
+    action: "Text Bold Karna",
+  },
+  {
+    key: "Ctrl + P",
+    action: "Print Window Open Karna",
+  },
   ],
 
   // 💡 Tip
@@ -96,27 +250,62 @@ export const lesson1: Lesson = {
 
   // 📥 Downloads
   downloads: [
-    {
-      title: "Practice Workbook",
-      fileName: "Practice1.xlsx",
-      href: "/downloads/excel/Practice1.xlsx",
-    },
-    {
-      title: "Lesson Notes",
-      fileName: "Introduction.pdf",
-      href: "/downloads/excel/Introduction.pdf",
-    },
+  {
+    title: "Lesson Notes",
+
+    fileName: "Introduction.pdf",
+
+    href: "/downloads/excel/Introduction.pdf",
+
+    type: "PDF",
+
+    size: "2.4 MB",
+
+    description:
+      "Complete lesson notes with examples."
+  },
+
+  {
+    title: "Practice Workbook",
+
+    fileName: "Practice1.xlsx",
+
+    href: "/downloads/excel/Practice1.xlsx",
+
+    type: "Excel",
+
+    size: "120 KB",
+
+    description:
+      "Practice exercises for this lesson."
+  },
+
+  {
+    title: "Assignment",
+
+    fileName: "Assignment1.pdf",
+
+    href: "/downloads/excel/Assignment1.pdf",
+
+    type: "PDF",
+
+    size: "350 KB",
+
+    description:
+      "Homework questions for students."
+  }
+
   ],
 
   // ❓ Quiz
   quiz: {
-    question: "Microsoft Excel kis type ka Software hai?",
-    options: [
-      "Spreadsheet Software",
-      "Video Editing Software",
-      "Web Browser",
-      "Operating System",
-    ],
-    correctAnswer: 0,
+  question: "Microsoft Excel kis type ka Software hai?",
+  options: [
+    "Spreadsheet Software",
+    "Video Editing Software",
+    "Web Browser",
+    "Operating System",
+  ],
+  correctAnswer: 0,
   },
 };

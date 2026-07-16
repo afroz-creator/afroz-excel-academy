@@ -1,5 +1,10 @@
 import type { Lesson } from "@/types/lesson";
 
+import ExcelInterfaceInfo from "@/components/lesson/ui/ExcelInterfaceInfo";
+import ComparisonTable from "@/components/lesson/ui/ComparisonTable";
+import HistoryTimeline from "@/components/lesson/ui/HistoryTimeline";
+import ShortcutTable from "@/components/lesson/ui/ShortcutTable";
+
 import ExplanationBox from "@/components/lesson/ui/ExplanationBox";
 import TipBox from "@/components/lesson/ui/TipBox";
 import WarningBox from "@/components/lesson/ui/WarningBox";
@@ -99,6 +104,11 @@ export default function LessonPlayerContent({
 
       </div>
 
+      {/* History Timeline */}
+      <HistoryTimeline
+        items={lesson.history}
+      />
+
       {/* Explanation */}
       <ExplanationBox title="📖 Lesson Explanation">
 
@@ -112,7 +122,7 @@ export default function LessonPlayerContent({
 
       </ExplanationBox>
 
-      {/* Image */}
+      {/* Excel Interface Image */}
       {lesson.image && (
 
         <ImageBox
@@ -122,6 +132,34 @@ export default function LessonPlayerContent({
         />
 
       )}
+
+      {/* Excel Interface Parts */}
+      <ExcelInterfaceInfo
+        items={lesson.excelInterface}
+      />
+
+      {/* Workbook vs Worksheet Table */}
+      <ComparisonTable
+        title="Workbook vs Worksheet"
+        rows={lesson.comparison}
+      />
+
+      {/* Workbook vs Worksheet Image */}
+      {lesson.comparisonImage && (
+
+        <ImageBox
+          src={lesson.comparisonImage.src}
+          alt={lesson.comparisonImage.alt}
+          caption={lesson.comparisonImage.caption}
+        />
+
+      )}
+
+      {/* Excel Shortcut Keys */}
+
+      <ShortcutTable
+        shortcuts={lesson.shortcuts}
+      />
 
       {/* Tip */}
       <TipBox>
@@ -154,7 +192,7 @@ export default function LessonPlayerContent({
 
       </div>
 
-            {/* Warning */}
+      {/* Warning */}
       <WarningBox>
         {lesson.warning}
       </WarningBox>
@@ -198,6 +236,7 @@ export default function LessonPlayerContent({
               key={index}
               className="flex items-start gap-3 rounded-lg bg-white p-3"
             >
+
               <span>✅</span>
 
               <span>{item}</span>
