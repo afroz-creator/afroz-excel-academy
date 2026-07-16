@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 interface LessonNavigationProps {
   previousLesson?: number;
@@ -11,6 +12,7 @@ export default function LessonNavigation({
   previousLesson,
   nextLesson,
 }: LessonNavigationProps) {
+  const [completed, setCompleted] = useState(false);
   return (
     <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
 
@@ -31,8 +33,15 @@ export default function LessonNavigation({
         )}
 
         {/* Complete Button */}
-        <button className="rounded-2xl bg-gradient-to-r from-green-600 to-emerald-500 px-8 py-4 font-bold text-white shadow-lg transition hover:scale-105 hover:shadow-xl">
-          ✅ Mark Lesson Complete
+        <button
+          onClick={() => setCompleted(true)}
+          className={`rounded-2xl px-8 py-4 font-bold text-white shadow-lg transition hover:scale-105 hover:shadow-xl ${
+            completed
+              ? "bg-green-700"
+              : "bg-gradient-to-r from-green-600 to-emerald-500"
+          }`}
+        >
+          {completed ? "🎉 Lesson Completed" : "✅ Mark Lesson Complete"}
         </button>
 
         {/* Next Button */}

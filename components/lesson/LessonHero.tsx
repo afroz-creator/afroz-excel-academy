@@ -1,53 +1,82 @@
+import Image from "next/image";
+
 interface LessonHeroProps {
   title: string;
-  level: string;
-  duration: string;
   module: string;
+  duration: string;
+  type: string;
+  image: string;
 }
 
 export default function LessonHero({
   title,
-  level,
-  duration,
   module,
+  duration,
+  type,
+  image,
 }: LessonHeroProps) {
   return (
-    <section className="bg-gradient-to-r from-green-700 to-green-500 text-white py-20">
-      <div className="max-w-6xl mx-auto px-6">
+    <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-green-700 via-green-600 to-emerald-500 shadow-xl">
 
-        <span className="bg-white text-green-700 px-4 py-2 rounded-full font-semibold">
-          Afroz IT Solution
-        </span>
+      <div className="grid items-center gap-8 p-8 lg:grid-cols-2">
 
-        <h1 className="text-5xl md:text-6xl font-bold mt-8">
-          {title}
-        </h1>
+        {/* Left */}
+        <div className="text-white">
 
-        <div className="flex flex-wrap gap-4 mt-8">
-
-          <span className="bg-white/20 px-4 py-2 rounded-full">
-            ⭐ {level}
+          <span className="inline-block rounded-full bg-white/20 px-4 py-2 text-sm font-semibold">
+            📘 {module}
           </span>
 
-          <span className="bg-white/20 px-4 py-2 rounded-full">
-            ⏱ {duration}
-          </span>
+          <h1 className="mt-5 text-5xl font-bold leading-tight">
+            {title}
+          </h1>
 
-          <span className="bg-white/20 px-4 py-2 rounded-full">
-            📚 {module}
-          </span>
+          {/* Debug */}
+          <p className="mt-2 text-red-200 break-all">
+            {image}
+          </p>
+
+          <p className="mt-4 text-green-100">
+            Afroz Excel Academy
+          </p>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+
+            <span className="rounded-full bg-white px-4 py-2 font-semibold text-green-700">
+              ⏱ {duration}
+            </span>
+
+            <span className="rounded-full bg-white px-4 py-2 font-semibold text-green-700">
+              📚 {type}
+            </span>
+
+            <span className="rounded-full bg-yellow-300 px-4 py-2 font-semibold text-black">
+              ⭐ Beginner
+            </span>
+
+          </div>
+
+          <button className="mt-8 rounded-xl bg-white px-6 py-3 font-bold text-green-700 transition hover:scale-105">
+            ▶️ Start Learning
+          </button>
 
         </div>
 
-        <p className="mt-8 text-xl max-w-3xl text-green-100">
-          Learn Microsoft Excel step by step in simple Roman Hindi with practical examples.
-        </p>
+        {/* Right */}
+        <div className="relative h-[320px] w-full">
 
-        <button className="mt-10 bg-white text-green-700 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition">
-          Start Practice →
-        </button>
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="rounded-2xl object-cover shadow-2xl"
+            priority
+          />
+
+        </div>
 
       </div>
-    </section>
+
+    </div>
   );
 }

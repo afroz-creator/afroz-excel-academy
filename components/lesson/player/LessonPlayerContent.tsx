@@ -17,25 +17,25 @@ export default function LessonPlayerContent({
   lesson,
 }: LessonPlayerContentProps) {
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
 
       {/* Video */}
       <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
 
-        <div className="flex aspect-video items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700">
+        <div className="flex aspect-video items-center justify-center bg-gradient-to-br from-green-700 via-green-600 to-emerald-500">
 
           <div className="text-center text-white">
 
             <div className="mb-6 text-7xl">
-              ▶️
+              🎥
             </div>
 
             <h2 className="text-3xl font-bold">
-              Lesson Preview
+              Microsoft Excel Course
             </h2>
 
-            <p className="mt-3 text-slate-300">
-              Video will be added later.
+            <p className="mt-3 text-green-100">
+              Video jaldi add kiya jayega.
             </p>
 
           </div>
@@ -55,7 +55,11 @@ export default function LessonPlayerContent({
           {lesson.title}
         </h1>
 
-        <div className="mt-5 flex gap-6 text-gray-600">
+        <p className="mt-4 text-lg text-gray-600">
+          {lesson.description}
+        </p>
+
+        <div className="mt-6 flex flex-wrap gap-6 text-gray-600">
 
           <span>⏱ {lesson.duration}</span>
 
@@ -65,20 +69,58 @@ export default function LessonPlayerContent({
 
       </div>
 
+      {/* Learning Objectives */}
+      <div className="rounded-3xl border border-green-200 bg-green-50 p-6 shadow-sm">
+
+        <h2 className="mb-5 text-2xl font-bold text-green-700">
+          🎯 Is Lesson me Aap Kya Seekhenge?
+        </h2>
+
+        <ul className="space-y-3">
+
+          {lesson.learningObjectives.map((item, index) => (
+
+            <li
+              key={index}
+              className="flex items-start gap-3 rounded-lg bg-white p-3"
+            >
+
+              <span className="text-green-600">
+                ✅
+              </span>
+
+              <span>{item}</span>
+
+            </li>
+
+          ))}
+
+        </ul>
+
+      </div>
+
       {/* Explanation */}
-      <ExplanationBox title="What will you learn?">
+      <ExplanationBox title="📖 Lesson Explanation">
+
         {lesson.explanation.map((item, index) => (
-          <p key={index}>{item}</p>
+
+          <p key={index}>
+            {item}
+          </p>
+
         ))}
+
       </ExplanationBox>
 
       {/* Image */}
       {lesson.image && (
+
         <ImageBox
           src={lesson.image.src}
           alt={lesson.image.alt}
           caption={lesson.image.caption}
         />
+
       )}
 
       {/* Tip */}
@@ -86,7 +128,33 @@ export default function LessonPlayerContent({
         {lesson.tip}
       </TipBox>
 
-      {/* Warning */}
+      {/* Did You Know */}
+      <div className="rounded-3xl border border-blue-200 bg-blue-50 p-6 shadow-sm">
+
+        <h2 className="mb-4 text-2xl font-bold text-blue-700">
+          💡 Kya Aap Jaante Hain?
+        </h2>
+
+        <p className="text-gray-700">
+          {lesson.didYouKnow}
+        </p>
+
+      </div>
+
+      {/* Common Mistake */}
+      <div className="rounded-3xl border border-yellow-200 bg-yellow-50 p-6 shadow-sm">
+
+        <h2 className="mb-4 text-2xl font-bold text-yellow-700">
+          ⚠️ Common Mistake
+        </h2>
+
+        <p className="text-gray-700">
+          {lesson.commonMistake}
+        </p>
+
+      </div>
+
+            {/* Warning */}
       <WarningBox>
         {lesson.warning}
       </WarningBox>
@@ -114,6 +182,54 @@ export default function LessonPlayerContent({
         options={lesson.quiz.options}
         correctAnswer={lesson.quiz.correctAnswer}
       />
+
+      {/* Summary */}
+      <div className="rounded-3xl border border-green-200 bg-green-50 p-6 shadow-sm">
+
+        <h2 className="mb-5 text-2xl font-bold text-green-700">
+          📚 Lesson Summary
+        </h2>
+
+        <ul className="space-y-3">
+
+          {lesson.summary.map((item, index) => (
+
+            <li
+              key={index}
+              className="flex items-start gap-3 rounded-lg bg-white p-3"
+            >
+              <span>✅</span>
+
+              <span>{item}</span>
+
+            </li>
+
+          ))}
+
+        </ul>
+
+      </div>
+
+      {/* Assignment */}
+      <div className="rounded-3xl border border-indigo-200 bg-indigo-50 p-6 shadow-sm">
+
+        <h2 className="mb-5 text-2xl font-bold text-indigo-700">
+          📝 Ghar Ka Kaam (Assignment)
+        </h2>
+
+        <ol className="list-decimal space-y-3 pl-6">
+
+          {lesson.assignment.map((item, index) => (
+
+            <li key={index}>
+              {item}
+            </li>
+
+          ))}
+
+        </ol>
+
+      </div>
 
     </div>
   );

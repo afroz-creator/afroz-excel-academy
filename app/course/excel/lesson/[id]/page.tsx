@@ -1,11 +1,12 @@
-import { lesson1 } from "@/data/lessons/lesson1";
 import { notFound } from "next/navigation";
 
 import LessonHeader from "@/components/lesson/LessonHeader";
+import LessonHero from "@/components/lesson/LessonHero";
 import LessonSidebar from "@/components/lesson/LessonSidebar";
 import LessonPlayerContent from "@/components/lesson/player/LessonPlayerContent";
 import LessonNavigation from "@/components/lesson/player/LessonNavigation";
 
+import { allLessons } from "@/data/lessons/allLessons";
 import { excelCourse } from "@/data/excelCourse";
 
 interface PageProps {
@@ -18,16 +19,18 @@ export default async function LessonPage({
   params,
 }: PageProps) {
   const { id } = await params;
+
   const lessonId = Number(id);
 
-  const allLessons = excelCourse.modules.flatMap((module) =>
+  // Sidebar lessons
+  const courseLessons = excelCourse.modules.flatMap((module) =>
     module.lessons.map((lesson) => ({
       ...lesson,
       moduleTitle: module.title,
     }))
   );
 
-  const currentIndex = allLessons.findIndex(
+  const currentIndex = courseLessons.findIndex(
     (lesson) => lesson.id === lessonId
   );
 
@@ -35,24 +38,28 @@ export default async function LessonPage({
     notFound();
   }
 
-  const currentLesson = allLessons[currentIndex];
+  const currentLesson = courseLessons[currentIndex];
 
   const previousLesson =
     currentIndex > 0
-      ? allLessons[currentIndex - 1]
+      ? courseLessons[currentIndex - 1]
       : null;
 
   const nextLesson =
-    currentIndex < allLessons.length - 1
-      ? allLessons[currentIndex + 1]
+    currentIndex < courseLessons.length - 1
+      ? courseLessons[currentIndex + 1]
       : null;
 
-  return (
-    <div className="mx-auto max-w-7xl px-6 py-8">
+  // Lesson Data
+  const lesson = allLessons[lessonId] ?? allLessons[1];
 
+  return (
+    <div className="container mx-auto px-4 py-8">
+
+      {/* Top Header */}
       <LessonHeader
         title={currentLesson.title}
-        progress={excelCourse.progress}
+        progress={Math.round((lessonId / courseLessons.length) * 100)}
       />
 
       <div className="mt-8 grid gap-8 lg:grid-cols-4">
@@ -60,11 +67,24 @@ export default async function LessonPage({
         {/* Sidebar */}
         <LessonSidebar />
 
-        {/* Main Content */}
-        <div className="space-y-6 lg:col-span-3">
+        {/* Main */}
+        <div className="space-y-8 lg:col-span-3">
 
-          <LessonPlayerContent lesson={lesson1} />
+          {/* Hero */}
+          <LessonHero
+            title={lesson.title}
+            module={lesson.module}
+            duration={lesson.duration}
+            type={lesson.type}
+            image={lesson.heroImage}
+          />
 
+          {/* Lesson Content */}
+          <LessonPlayerContent
+            lesson={lesson}
+          />
+
+          {/* Navigation */}
           <LessonNavigation
             previousLesson={previousLesson?.id}
             nextLesson={nextLesson?.id}

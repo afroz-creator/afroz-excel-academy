@@ -50,10 +50,11 @@ export default async function TutorialPage({ params }: Props) {
     <>
       <LessonHero
         title={tutorial.title}
-        level={tutorial.level}
-        duration={tutorial.duration}
         module={lessonData?.hero.module ?? "Module 1"}
-      />
+        duration={tutorial.duration}
+        type={tutorial.level}
+        image="/images/excel/lesson1/hero.png"
+        />
 
       <LessonContent
         title={lessonData?.content.title ?? ""}

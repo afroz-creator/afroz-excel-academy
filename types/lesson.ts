@@ -17,6 +17,7 @@ export interface Quiz {
 }
 
 export interface Lesson {
+  // Basic Information
   id: number;
 
   title: string;
@@ -29,23 +30,49 @@ export interface Lesson {
 
   description: string;
 
+  // 🖼️ Hero Banner Image
+  heroImage: string;
+
+  // 🎯 Learning Objectives
+  learningObjectives: string[];
+
+  // 📖 Main Lesson Content
   explanation: string[];
 
+  // 💡 Pro Tip
   tip: string;
 
+  // 🌍 Did You Know
+  didYouKnow: string;
+
+  // ❌ Common Mistake
+  commonMistake: string;
+
+  // ⚠️ Warning
   warning: string;
 
+  // ➕ Formula
   formula: Formula;
 
+  // 💻 Practice
   practice: string[];
 
+  // 📚 Lesson Summary
+  summary: string[];
+
+  // 📝 Assignment
+  assignment: string[];
+
+  // 🖼️ Lesson Content Image
   image?: {
     src: string;
     alt: string;
     caption?: string;
   };
 
+  // 📥 Downloads
   downloads: DownloadFile[];
 
+  // ❓ Quiz
   quiz: Quiz;
 }
