@@ -26,6 +26,22 @@ export const lesson2: Lesson = {
     "Worksheet me kaam karna."
   ],
 
+  // 📜 History Timeline
+  history: [
+    {
+      year: "1987",
+      title: "Windows Version",
+      description:
+        "Microsoft Excel pehli baar Windows Operating System ke liye release hua."
+    },
+    {
+      year: "2007",
+      title: "Ribbon Interface",
+      description:
+        "Microsoft ne Ribbon Interface introduce kiya jisse Excel use karna aur bhi aasaan ho gaya."
+    }
+  ],
+
   // 📖 Explanation
   explanation: [
     "Title Bar workbook ka naam dikhati hai.",
@@ -34,6 +50,109 @@ export const lesson2: Lesson = {
     "Formula Bar me formulas likhe aur edit kiye jaate hain.",
     "Rows numbers se aur Columns letters se identify hote hain.",
     "Worksheet wahi area hai jahan hum data enter karte hain."
+  ],
+
+  // 📊 Workbook vs Worksheet
+  comparison: [
+    {
+      workbook: "Workbook poori Excel File hoti hai.",
+      worksheet: "Worksheet Workbook ke andar ek Sheet hoti hai."
+    },
+    {
+      workbook: "Workbook me multiple worksheets ho sakti hain.",
+      worksheet: "Worksheet sirf ek sheet hoti hai."
+    },
+    {
+      workbook: "Workbook ko save kiya jata hai.",
+      worksheet: "Worksheet workbook ke andar use hoti hai."
+    }
+  ],
+
+  // 🖼 Comparison Image
+  comparisonImage: {
+    src: "/images/excel/lesson2/workbook-vs-worksheet.png",
+    alt: "Workbook vs Worksheet",
+    caption: "Workbook aur Worksheet ka Difference"
+  },
+
+  // 🖥 Excel Interface Parts
+  excelInterface: [
+    {
+      name: "Title Bar",
+      description: "Workbook ka naam dikhata hai."
+    },
+    {
+      name: "Quick Access Toolbar",
+      description: "Save, Undo aur Redo buttons yahan hote hain."
+    },
+    {
+      name: "Ribbon",
+      description: "Excel ke sabhi commands aur tools yahan hote hain."
+    },
+    {
+      name: "Name Box",
+      description: "Current Cell ka address dikhata hai."
+    },
+    {
+      name: "Formula Bar",
+      description: "Formula aur data edit karne ke liye use hoti hai."
+    },
+    {
+      name: "Column",
+      description: "Vertical cells ka group."
+    },
+    {
+      name: "Row",
+      description: "Horizontal cells ka group."
+    },
+    {
+      name: "Worksheet",
+      description: "Main working area jahan data enter kiya jata hai."
+    },
+    {
+      name: "Sheet Tabs",
+      description: "Alag-alag worksheets ke beech switch karne ke liye."
+    },
+    {
+      name: "Status Bar",
+      description: "Worksheet ki information dikhata hai."
+    }
+  ],
+
+  // ⌨ Shortcut Keys
+  shortcuts: [
+    {
+      key: "Ctrl + N",
+      action: "New Workbook"
+    },
+    {
+      key: "Ctrl + O",
+      action: "Open Workbook"
+    },
+    {
+      key: "Ctrl + S",
+      action: "Save Workbook"
+    },
+    {
+      key: "Ctrl + C",
+      action: "Copy"
+    },
+    {
+      key: "Ctrl + V",
+      action: "Paste"
+    },
+    {
+      key: "Ctrl + Z",
+      action: "Undo"
+    },
+    {
+      key: "Ctrl + Y",
+      action: "Redo"
+    },
+    {
+      key: "Ctrl + P",
+      action: "Print"
+    }
   ],
 
   // 💡 Tip
@@ -97,7 +216,10 @@ export const lesson2: Lesson = {
     {
       title: "Interface Notes",
       fileName: "ExcelInterface.pdf",
-      href: "/downloads/excel/ExcelInterface.pdf"
+      href: "/downloads/excel/ExcelInterface.pdf",
+      type: "PDF",
+      size: "1.8 MB",
+      description: "Complete notes about the Microsoft Excel Interface."
     }
   ],
 

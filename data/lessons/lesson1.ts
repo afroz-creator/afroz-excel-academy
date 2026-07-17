@@ -249,53 +249,32 @@ shortcuts: [
   },
 
   // 📥 Downloads
-  downloads: [
+ downloads: [
   {
     title: "Lesson Notes",
-
-    fileName: "Introduction.pdf",
-
-    href: "/downloads/excel/Introduction.pdf",
-
+    fileName: "lesson-notes.pdf",
+    href: "/downloads/excel/lesson1/lesson-notes.pdf",
     type: "PDF",
-
-    size: "2.4 MB",
-
-    description:
-      "Complete lesson notes with examples."
+    size: "2.3 MB",
+    description: "Complete lesson notes with explanations.",
   },
-
   {
     title: "Practice Workbook",
-
-    fileName: "Practice1.xlsx",
-
-    href: "/downloads/excel/Practice1.xlsx",
-
+    fileName: "practice.xlsx",
+    href: "/downloads/excel/lesson1/practice.xlsx",
     type: "Excel",
-
-    size: "120 KB",
-
-    description:
-      "Practice exercises for this lesson."
+    size: "180 KB",
+    description: "Practice file for this lesson.",
   },
-
   {
     title: "Assignment",
-
-    fileName: "Assignment1.pdf",
-
-    href: "/downloads/excel/Assignment1.pdf",
-
+    fileName: "assignment.pdf",
+    href: "/downloads/excel/lesson1/assignment.pdf",
     type: "PDF",
-
-    size: "350 KB",
-
-    description:
-      "Homework questions for students."
-  }
-
-  ],
+    size: "450 KB",
+    description: "Homework assignment for students.",
+  },
+],
 
   // ❓ Quiz
   quiz: {

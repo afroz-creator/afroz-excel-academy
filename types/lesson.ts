@@ -8,11 +8,8 @@ export interface DownloadFile {
   title: string;
   fileName: string;
   href: string;
-
   type: string;
-
   size: string;
-
   description: string;
 }
 
@@ -119,5 +116,5 @@ export interface Lesson {
   downloads: DownloadFile[];
 
   // ❓ Quiz
-  quiz: Quiz;
+  quiz: Quiz; 
 }

@@ -22,7 +22,7 @@ export default async function LessonPage({
 
   const lessonId = Number(id);
 
-  // Sidebar lessons
+  // Sidebar Lessons
   const courseLessons = excelCourse.modules.flatMap((module) =>
     module.lessons.map((lesson) => ({
       ...lesson,
@@ -41,9 +41,7 @@ export default async function LessonPage({
   const currentLesson = courseLessons[currentIndex];
 
   const previousLesson =
-    currentIndex > 0
-      ? courseLessons[currentIndex - 1]
-      : null;
+    currentIndex > 0 ? courseLessons[currentIndex - 1] : null;
 
   const nextLesson =
     currentIndex < courseLessons.length - 1
@@ -54,7 +52,7 @@ export default async function LessonPage({
   const lesson = allLessons[lessonId] ?? allLessons[1];
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="space-y-8">
 
       {/* Top Header */}
       <LessonHeader
@@ -62,12 +60,12 @@ export default async function LessonPage({
         progress={Math.round((lessonId / courseLessons.length) * 100)}
       />
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-4">
+      <div className="grid gap-8 lg:grid-cols-4">
 
         {/* Sidebar */}
         <LessonSidebar />
 
-        {/* Main */}
+        {/* Main Content */}
         <div className="space-y-8 lg:col-span-3">
 
           {/* Hero */}
@@ -76,13 +74,11 @@ export default async function LessonPage({
             module={lesson.module}
             duration={lesson.duration}
             type={lesson.type}
-            image={lesson.heroImage}
+            image={lesson.heroImage ?? "/images/excel/lesson1/hero.png"}
           />
 
           {/* Lesson Content */}
-          <LessonPlayerContent
-            lesson={lesson}
-          />
+          <LessonPlayerContent lesson={lesson} />
 
           {/* Navigation */}
           <LessonNavigation
