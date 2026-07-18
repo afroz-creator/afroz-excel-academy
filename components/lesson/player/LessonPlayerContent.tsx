@@ -11,7 +11,7 @@ import WarningBox from "@/components/lesson/ui/WarningBox";
 import FormulaBox from "@/components/lesson/ui/FormulaBox";
 import PracticeBox from "@/components/lesson/ui/PracticeBox";
 import ImageBox from "@/components/lesson/ui/ImageBox";
-import DownloadBox from "@/components/lesson/ui/DownloadBox";
+
 import QuizBox from "@/components/lesson/ui/QuizBox";
 
 interface LessonPlayerContentProps {
@@ -209,10 +209,7 @@ export default function LessonPlayerContent({
         tasks={lesson.practice}
       />
 
-      {/* Downloads */}
-      <DownloadBox
-        files={lesson.downloads}
-      />
+     
 
       {/* Quiz */}
       <QuizBox

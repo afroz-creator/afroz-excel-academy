@@ -1,3 +1,4 @@
+import ProtectedDownloadButton from "@/components/ui/ProtectedDownloadButton";
 import { notFound } from "next/navigation";
 
 import LessonHeader from "@/components/lesson/LessonHeader";
@@ -77,9 +78,40 @@ export default async function LessonPage({
             image={lesson.heroImage ?? "/images/excel/lesson1/hero.png"}
           />
 
+          
+
           {/* Lesson Content */}
           <LessonPlayerContent lesson={lesson} />
 
+          {/* Downloads */}
+          <div className="rounded-2xl border bg-white p-6 shadow-sm">
+
+            <h2 className="mb-5 text-2xl font-bold text-green-700">
+              📥 Lesson Downloads
+            </h2>
+
+            <div className="flex flex-wrap gap-4">
+
+              <ProtectedDownloadButton
+                file={`/downloads/lesson${lessonId}.pdf`}
+                title="📄 Download PDF"
+              />
+
+              <ProtectedDownloadButton
+                file={`/downloads/lesson${lessonId}.pptx`}
+                title="📽 Download PPT"
+              />
+
+              <ProtectedDownloadButton
+                file={`/downloads/lesson${lessonId}.xlsx`}
+                title="📊 Practice File"
+              />
+
+            </div>
+
+          </div>
+
+          
           {/* Navigation */}
           <LessonNavigation
             previousLesson={previousLesson?.id}
