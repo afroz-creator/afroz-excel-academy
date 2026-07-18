@@ -1,5 +1,6 @@
 "use client";
 
+import UserDropdown from "./UserDropdown";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -119,18 +120,10 @@ export default function Header() {
             </button>
 
             {loading ? null : user ? (
-              <>
-                <span className="rounded-lg bg-green-100 px-4 py-2 font-semibold text-green-700">
-                  👋 {user.displayName || "Student"}
-                </span>
-
-                <button
-                  onClick={handleLogout}
-                  className="rounded-xl border border-red-500 px-5 py-2.5 font-semibold text-red-600 transition hover:bg-red-50"
-                >
-                  Logout
-                </button>
-              </>
+              <UserDropdown
+                user={user}
+                onLogout={handleLogout}
+              />
             ) : (
               <>
                 <Link
