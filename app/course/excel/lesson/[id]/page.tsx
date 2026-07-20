@@ -5,7 +5,7 @@ import LessonHeader from "@/components/lesson/LessonHeader";
 import LessonHero from "@/components/lesson/LessonHero";
 import LessonSidebar from "@/components/lesson/LessonSidebar";
 import LessonPlayerContent from "@/components/lesson/player/LessonPlayerContent";
-import LessonNavigation from "@/components/lesson/player/LessonNavigation";
+import LessonCourseNavigation from "@/components/lesson/player/LessonCourseNavigation";
 
 import { allLessons } from "@/data/lessons/allLessons";
 import { excelCourse } from "@/data/excelCourse";
@@ -113,11 +113,10 @@ export default async function LessonPage({
 
           
           {/* Navigation */}
-          <LessonNavigation
+          <LessonCourseNavigation
             previousLesson={previousLesson?.id}
             nextLesson={nextLesson?.id}
           />
-
         </div>
 
       </div>

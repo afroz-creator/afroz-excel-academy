@@ -2,29 +2,23 @@
 
 import Link from "next/link";
 
-interface Tutorial {
-  title: string;
-  slug: string;
-}
-
 interface Props {
-  previous?: Tutorial;
-  next?: Tutorial;
+  previousLesson?: number | null;
+  nextLesson?: number | null;
 }
 
-export default function LessonNavigation({
-  previous,
-  next,
+export default function LessonCourseNavigation({
+  previousLesson,
+  nextLesson,
 }: Props) {
   return (
     <section className="grid gap-6 md:grid-cols-3">
 
       {/* Previous */}
-
       <div>
-        {previous ? (
+        {previousLesson ? (
           <Link
-            href={`/tutorials/${previous.slug}`}
+            href={`/course/excel/lesson/${previousLesson}`}
             className="block rounded-2xl border p-6 transition hover:border-green-600 hover:shadow-lg"
           >
             <p className="text-sm text-gray-500">
@@ -32,7 +26,7 @@ export default function LessonNavigation({
             </p>
 
             <h3 className="mt-2 text-xl font-bold">
-              {previous.title}
+              Lesson {previousLesson}
             </h3>
           </Link>
         ) : (
@@ -42,21 +36,21 @@ export default function LessonNavigation({
         )}
       </div>
 
-      {/* All Tutorials */}
+      {/* Course Home */}
 
       <Link
-        href="/tutorials"
+        href="/course/excel"
         className="flex items-center justify-center rounded-2xl bg-green-700 p-6 text-lg font-bold text-white transition hover:bg-green-800"
       >
-        📚 All Tutorials
+        📚 Course Home
       </Link>
 
       {/* Next */}
 
       <div>
-        {next ? (
+        {nextLesson ? (
           <Link
-            href={`/tutorials/${next.slug}`}
+            href={`/course/excel/lesson/${nextLesson}`}
             className="block rounded-2xl border p-6 text-right transition hover:border-green-600 hover:shadow-lg"
           >
             <p className="text-sm text-gray-500">
@@ -64,13 +58,13 @@ export default function LessonNavigation({
             </p>
 
             <h3 className="mt-2 text-xl font-bold">
-              {next.title}
+              Lesson {nextLesson}
             </h3>
           </Link>
         ) : (
           <div className="rounded-2xl border bg-green-50 p-6 text-center">
             <h3 className="text-lg font-bold text-green-700">
-              🎉 Tutorial Completed
+              🎉 Course Completed
             </h3>
 
             <p className="mt-2 text-gray-600">

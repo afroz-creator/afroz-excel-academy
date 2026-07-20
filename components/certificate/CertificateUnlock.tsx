@@ -1,20 +1,31 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { auth } from "@/lib/firebase";
 import { tutorials } from "@/data/tutorials";
 import { getCompletedLessons } from "@/lib/progress";
-import { useEffect, useState } from "react";
 
 export default function CertificateUnlock() {
   const [completed, setCompleted] = useState(0);
 
   useEffect(() => {
-    setCompleted(getCompletedLessons().length);
+    async function loadProgress() {
+      const user = auth.currentUser;
+
+      if (!user) return;
+
+      const lessonsCompleted = await getCompletedLessons(user.uid);
+
+      setCompleted(lessonsCompleted);
+    }
+
+    loadProgress();
   }, []);
 
-  const unlocked = completed === tutorials.length;
+  const unlocked = completed >= tutorials.length;
 
   return (
-    <section className="mt-10 rounded-3xl bg-white shadow-lg p-8">
+    <section className="rounded-3xl border bg-white p-8 shadow-sm">
 
       <h2 className="text-3xl font-bold">
         🎓 Certificate
@@ -27,8 +38,7 @@ export default function CertificateUnlock() {
       <div className="mt-8">
 
         {unlocked ? (
-
-          <div className="bg-green-100 border-2 border-green-500 rounded-2xl p-6">
+          <div className="rounded-2xl border-2 border-green-500 bg-green-100 p-6">
 
             <h3 className="text-2xl font-bold text-green-700">
               🎉 Congratulations!
@@ -38,17 +48,13 @@ export default function CertificateUnlock() {
               You completed all Excel lessons.
             </p>
 
-            <button
-              className="mt-6 bg-green-600 text-white px-6 py-3 rounded-xl hover:bg-green-700"
-            >
+            <button className="mt-6 rounded-xl bg-green-600 px-6 py-3 text-white hover:bg-green-700">
               Download Certificate
             </button>
 
           </div>
-
         ) : (
-
-          <div className="bg-yellow-100 border-2 border-yellow-500 rounded-2xl p-6">
+          <div className="rounded-2xl border-2 border-yellow-500 bg-yellow-100 p-6">
 
             <h3 className="text-2xl font-bold">
               🔒 Certificate Locked
@@ -63,7 +69,6 @@ export default function CertificateUnlock() {
             </p>
 
           </div>
-
         )}
 
       </div>
