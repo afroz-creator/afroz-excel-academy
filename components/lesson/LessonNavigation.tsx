@@ -1,68 +1,75 @@
+"use client";
+
 import Link from "next/link";
 
 interface Props {
-  previous?: {
-    title: string;
-    slug: string;
-  };
-  next?: {
-    title: string;
-    slug: string;
-  };
+  previousLesson?: number | null;
+  nextLesson?: number | null;
 }
 
 export default function LessonNavigation({
-  previous,
-  next,
+  previousLesson,
+  nextLesson,
 }: Props) {
   return (
-    <section className="max-w-6xl mx-auto px-6 pb-20">
-      <div className="grid md:grid-cols-3 gap-6">
+    <section className="mt-10">
+      <div className="grid gap-4 md:grid-cols-3">
 
-        {/* Previous */}
-
+        {/* Previous Lesson */}
         <div>
-          {previous && (
+          {previousLesson ? (
             <Link
-              href={`/tutorials/${previous.slug}`}
-              className="block rounded-2xl border p-6 hover:border-green-600 hover:shadow-lg transition"
+              href={`/course/excel/lesson/${previousLesson}`}
+              className="block rounded-2xl border p-6 transition hover:border-green-600 hover:shadow-lg"
             >
               <p className="text-sm text-gray-500">
                 ← Previous Lesson
               </p>
 
-              <h3 className="mt-2 text-xl font-bold text-gray-800">
-                {previous.title}
+              <h3 className="mt-2 text-xl font-bold">
+                Lesson {previousLesson}
               </h3>
             </Link>
+          ) : (
+            <div className="rounded-2xl border bg-gray-50 p-6 text-center text-gray-400">
+              First Lesson
+            </div>
           )}
         </div>
 
-        {/* All Lessons */}
-
+        {/* Course Home */}
         <Link
-          href="/tutorials"
-          className="rounded-2xl bg-green-700 text-white flex items-center justify-center text-lg font-semibold hover:bg-green-800 transition"
+          href="/course/excel"
+          className="flex items-center justify-center rounded-2xl bg-green-700 p-6 text-lg font-bold text-white transition hover:bg-green-800"
         >
-          All Lessons
+          📚 Course Home
         </Link>
 
-        {/* Next */}
-
+        {/* Next Lesson */}
         <div>
-          {next && (
+          {nextLesson ? (
             <Link
-              href={`/tutorials/${next.slug}`}
-              className="block rounded-2xl border p-6 hover:border-green-600 hover:shadow-lg transition text-right"
+              href={`/course/excel/lesson/${nextLesson}`}
+              className="block rounded-2xl border p-6 text-right transition hover:border-green-600 hover:shadow-lg"
             >
               <p className="text-sm text-gray-500">
                 Next Lesson →
               </p>
 
-              <h3 className="mt-2 text-xl font-bold text-gray-800">
-                {next.title}
+              <h3 className="mt-2 text-xl font-bold">
+                Lesson {nextLesson}
               </h3>
             </Link>
+          ) : (
+            <div className="rounded-2xl border bg-green-50 p-6 text-center">
+              <h3 className="text-lg font-bold text-green-700">
+                🎉 Course Completed
+              </h3>
+
+              <p className="mt-2 text-gray-600">
+                Congratulations!
+              </p>
+            </div>
           )}
         </div>
 

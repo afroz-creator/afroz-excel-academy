@@ -99,22 +99,24 @@ export function listenStudentProfile(
 }
 
 /**
- * Update Progress
+ * Update Student Progress
  */
-export async function updateStudentProgress(
-  lessonsCompleted: number,
-  progress: number
-) {
-  const user = auth.currentUser;
+  export async function updateStudentProgress(
+    lessonsCompleted: number,
+    progress: number,
+    currentLesson: number
+  ) {
+    const user = auth.currentUser;
 
-  if (!user) return;
+    if (!user) return;
 
-  await updateDoc(doc(db, "students", user.uid), {
-    lessonsCompleted,
-    progress,
-    updatedAt: serverTimestamp(),
-  });
-}
+    await updateDoc(doc(db, "students", user.uid), {
+      lessonsCompleted,
+      progress,
+      currentLesson,
+      updatedAt: serverTimestamp(),
+    });
+  }
 
 /**
  * Update Daily Streak

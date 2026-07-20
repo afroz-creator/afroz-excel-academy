@@ -8,48 +8,60 @@ export default function UserWelcome() {
 
   if (loading || !student) {
     return (
-      <section className="rounded-2xl bg-gradient-to-r from-green-600 to-green-500 p-8 text-white shadow-lg">
-        <p>Loading...</p>
+      <section className="rounded-3xl bg-green-600 p-10 text-white shadow-xl">
+        <div className="flex h-56 items-center justify-center">
+          <p className="text-lg">Loading...</p>
+        </div>
       </section>
     );
   }
 
-  const xp = student.lessonsCompleted * 10;
+  // Safe Values
+  const totalLessons = student.totalLessons ?? 20;
+  const lessonsCompleted = student.lessonsCompleted ?? 0;
+  const streak = student.streak ?? 0;
+
+  // Auto Calculations
+  const xp = lessonsCompleted * 10;
   const level = Math.floor(xp / 100) + 1;
 
-  return (
-    <section className="overflow-hidden rounded-3xl bg-gradient-to-r from-green-700 via-green-600 to-emerald-500 p-8 text-white shadow-xl">
+  const progress =
+    totalLessons > 0
+      ? Math.round((lessonsCompleted / totalLessons) * 100)
+      : 0;
 
+  return (
+    <section className="mx-auto w-full max-w-7xl rounded-3xl bg-green-600 p-10 text-white shadow-xl">
       <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
 
-        {/* Left Side */}
-        <div>
+        {/* Left */}
+        <div className="flex-1">
 
-          <p className="text-green-100 text-sm uppercase tracking-widest">
+          <p className="text-sm uppercase tracking-widest text-green-100">
             Welcome Back
           </p>
 
-          <h1 className="mt-2 text-4xl font-extrabold">
+          <h1 className="mt-2 text-5xl font-extrabold">
             {student.name} 👋
           </h1>
 
-          <p className="mt-3 text-green-100">
+          <p className="mt-3 text-lg text-green-100">
             Continue your Excel learning journey and become an Excel Expert.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-4">
 
-            <div className="flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2">
+            <div className="flex items-center gap-2 rounded-xl bg-white/15 px-5 py-3">
               <Star size={18} />
               <span>{xp} XP</span>
             </div>
 
-            <div className="flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2">
+            <div className="flex items-center gap-2 rounded-xl bg-white/15 px-5 py-3">
               <Flame size={18} />
-              <span>{student.streak} Day Streak</span>
+              <span>{streak} Day Streak</span>
             </div>
 
-            <div className="flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2">
+            <div className="flex items-center gap-2 rounded-xl bg-white/15 px-5 py-3">
               <Target size={18} />
               <span>Level {level}</span>
             </div>
@@ -58,36 +70,44 @@ export default function UserWelcome() {
 
         </div>
 
-        {/* Right Side */}
-        <div className="rounded-2xl bg-white/10 p-6 backdrop-blur-md lg:w-72">
+        {/* Right */}
+        <div className="rounded-2xl bg-white/10 p-8 backdrop-blur-md lg:w-80">
 
-          <h2 className="text-xl font-bold">
+          <h2 className="text-3xl font-bold">
             Today's Goal
           </h2>
 
-          <p className="mt-2 text-green-100">
+          <p className="mt-3 text-green-100">
             Complete 2 Lessons Today
           </p>
 
-          <div className="mt-5 h-3 overflow-hidden rounded-full bg-white/20">
+          <div className="mt-6 h-3 overflow-hidden rounded-full bg-white/20">
 
             <div
-              className="h-full rounded-full bg-white"
+              className="h-full rounded-full bg-white transition-all duration-500"
               style={{
-                width: `${Math.min(student.progress, 100)}%`,
+                width: `${progress}%`,
               }}
             />
 
           </div>
 
-          <p className="mt-3 text-sm text-green-100">
-            {student.progress}% Completed
+          <p className="mt-4 text-sm text-green-100">
+            {progress}% Completed
           </p>
+
+          <div className="mt-6 rounded-xl bg-white/10 p-4">
+            <div className="flex justify-between text-sm">
+              <span>Lessons</span>
+              <span>
+                {lessonsCompleted} / {totalLessons}
+              </span>
+            </div>
+          </div>
 
         </div>
 
       </div>
-
     </section>
   );
 }

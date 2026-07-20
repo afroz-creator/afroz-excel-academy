@@ -1,6 +1,9 @@
 "use client";
 
-import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import {
+  buildStyles,
+  CircularProgressbar,
+} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 import { useStudent } from "@/context/StudentContext";
@@ -8,27 +11,40 @@ import { useStudent } from "@/context/StudentContext";
 export default function CircularProgress() {
   const { student, loading } = useStudent();
 
-    console.log("Loading:", loading);
-    console.log("Student:", student);
-
   if (loading || !student) {
     return (
-      <div className="flex h-72 items-center justify-center rounded-2xl border bg-white shadow-sm">
-        <p className="text-gray-500">Loading...</p>
+      <div className="rounded-3xl bg-white p-8 shadow-md">
+        <div className="flex h-64 items-center justify-center">
+          <p className="text-gray-500">
+            Loading...
+          </p>
+        </div>
       </div>
     );
   }
 
+  const totalLessons = student.totalLessons ?? 20;
+  const lessonsCompleted = student.lessonsCompleted ?? 0;
+
+  // Automatically calculate progress
+  const progress =
+    totalLessons > 0
+      ? Math.round(
+          (lessonsCompleted / totalLessons) * 100
+        )
+      : 0;
+
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
-      <h2 className="mb-6 text-center text-xl font-bold text-gray-800">
+    <div className="rounded-3xl bg-white p-8 shadow-md">
+
+      <h2 className="mb-8 text-center text-2xl font-bold text-gray-800">
         Course Progress
       </h2>
 
       <div className="mx-auto h-56 w-56">
         <CircularProgressbar
-          value={student.progress}
-          text={`${student.progress}%`}
+          value={progress}
+          text={`${progress}%`}
           strokeWidth={10}
           styles={buildStyles({
             textSize: "18px",
@@ -39,15 +55,16 @@ export default function CircularProgress() {
         />
       </div>
 
-      <div className="mt-6 text-center">
+      <div className="mt-8 text-center">
         <p className="text-lg font-semibold text-gray-800">
-          {student.lessonsCompleted} / {student.totalLessons} Lessons Completed
+          {lessonsCompleted} / {totalLessons} Lessons Completed
         </p>
 
         <p className="mt-2 text-gray-500">
           Keep learning every day 🚀
         </p>
       </div>
+
     </div>
   );
 }

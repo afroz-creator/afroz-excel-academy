@@ -1,16 +1,29 @@
+"use client";
+
 import Link from "next/link";
 import { excelCourse } from "@/data/excelCourse";
+import { useStudent } from "@/context/StudentContext";
 
 export default function ExcelCoursePage() {
+  const { student, loading } = useStudent();
+
+  if (loading || !student) {
+    return (
+      <div className="flex h-96 items-center justify-center text-xl font-bold">
+        Loading...
+      </div>
+    );
+  }
+
   const totalLessons = excelCourse.modules.reduce(
     (total, module) => total + module.lessons.length,
     0
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-10">
+    <div className="mx-auto max-w-7xl space-y-10 p-8">
 
-      {/* Hero Card */}
+      {/* Hero */}
       <div className="rounded-3xl bg-gradient-to-r from-green-700 to-green-500 p-10 text-white shadow-xl">
 
         <span className="rounded-full bg-white/20 px-4 py-2 text-sm font-semibold">
@@ -22,14 +35,14 @@ export default function ExcelCoursePage() {
         </h1>
 
         <p className="mt-4 max-w-3xl text-lg text-green-100">
-          Master Microsoft Excel from Basic to Advanced with practical projects,
-          formulas, functions, charts, Pivot Tables and dashboards.
+          Master Microsoft Excel from Basic to Advanced with practical
+          projects, formulas, functions, charts, Pivot Tables and dashboards.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-4">
 
           <Link
-            href="/course/excel/lesson/1"
+            href={`/course/excel/lesson/${student.currentLesson}`}
             className="rounded-xl bg-white px-6 py-3 font-semibold text-green-700 transition hover:bg-gray-100"
           >
             🚀 Continue Learning
@@ -40,10 +53,11 @@ export default function ExcelCoursePage() {
       </div>
 
       {/* Course Stats */}
-      <div className="mt-10 grid gap-6 md:grid-cols-4">
+      <div className="grid gap-6 md:grid-cols-4">
 
         <div className="rounded-2xl border bg-white p-6 shadow-sm">
           <p className="text-gray-500">Instructor</p>
+
           <h3 className="mt-2 text-xl font-bold">
             {excelCourse.instructor}
           </h3>
@@ -51,6 +65,7 @@ export default function ExcelCoursePage() {
 
         <div className="rounded-2xl border bg-white p-6 shadow-sm">
           <p className="text-gray-500">Modules</p>
+
           <h3 className="mt-2 text-xl font-bold">
             {excelCourse.modules.length}
           </h3>
@@ -58,6 +73,7 @@ export default function ExcelCoursePage() {
 
         <div className="rounded-2xl border bg-white p-6 shadow-sm">
           <p className="text-gray-500">Lessons</p>
+
           <h3 className="mt-2 text-xl font-bold">
             {totalLessons}
           </h3>
@@ -65,39 +81,44 @@ export default function ExcelCoursePage() {
 
         <div className="rounded-2xl border bg-white p-6 shadow-sm">
           <p className="text-gray-500">Progress</p>
+
           <h3 className="mt-2 text-xl font-bold">
-            {excelCourse.progress}%
+            {student.progress}%
           </h3>
         </div>
 
       </div>
 
       {/* Progress */}
-      <div className="mt-10 rounded-3xl border bg-white p-8 shadow-sm">
+      <div className="rounded-3xl border bg-white p-8 shadow-sm">
 
         <div className="mb-3 flex justify-between">
+
           <span className="font-semibold">
             Course Progress
           </span>
 
           <span className="font-bold text-green-700">
-            {excelCourse.progress}%
+            {student.progress}%
           </span>
+
         </div>
 
         <div className="h-4 rounded-full bg-gray-200">
+
           <div
             className="h-4 rounded-full bg-green-600 transition-all"
             style={{
-              width: `${excelCourse.progress}%`,
+              width: `${student.progress}%`,
             }}
           />
+
         </div>
 
       </div>
 
-      {/* Modules */}
-      <div className="mt-10 rounded-3xl border bg-white p-8 shadow-sm">
+            {/* Modules */}
+      <div className="rounded-3xl border bg-white p-8 shadow-sm">
 
         <h2 className="text-3xl font-bold">
           📚 Course Modules
@@ -106,6 +127,7 @@ export default function ExcelCoursePage() {
         <div className="mt-8 space-y-8">
 
           {excelCourse.modules.map((module) => (
+
             <div key={module.id}>
 
               <h3 className="mb-4 text-xl font-bold text-green-700">
@@ -114,36 +136,77 @@ export default function ExcelCoursePage() {
 
               <div className="space-y-3">
 
-                {module.lessons.map((lesson) => (
-                  <Link
-                    key={lesson.id}
-                    href={`/course/excel/lesson/${lesson.id}`}
-                    className="flex items-center justify-between rounded-xl border p-4 transition hover:bg-green-50"
-                  >
-                    <div>
-                      <h4 className="font-semibold">
-                        {lesson.title}
-                      </h4>
+                {module.lessons.map((lesson) => {
 
-                      <p className="text-sm text-gray-500">
-                        {lesson.duration}
-                      </p>
-                    </div>
+                  const completed =
+                    lesson.id < student.currentLesson;
 
-                    <div className="text-xl">
-                      {lesson.completed
-                        ? "✅"
-                        : lesson.locked
-                        ? "🔒"
-                        : "▶️"}
-                    </div>
+                  const current =
+                    lesson.id === student.currentLesson;
 
-                  </Link>
-                ))}
+                  const locked =
+                    lesson.id > student.currentLesson;
+
+                  return (
+                    <Link
+                      key={lesson.id}
+                      href={
+                        locked
+                          ? "#"
+                          : `/course/excel/lesson/${lesson.id}`
+                      }
+                      className={`flex items-center justify-between rounded-xl border p-4 transition
+
+                      ${
+                        completed
+                          ? "border-green-300 bg-green-50"
+                          : ""
+                      }
+
+                      ${
+                        current
+                          ? "border-green-600 bg-green-100 shadow-md"
+                          : ""
+                      }
+
+                      ${
+                        locked
+                          ? "cursor-not-allowed opacity-60"
+                          : "hover:bg-green-50"
+                      }
+                      `}
+                    >
+
+                      <div>
+
+                        <h4 className="font-semibold">
+                          {lesson.title}
+                        </h4>
+
+                        <p className="text-sm text-gray-500">
+                          {lesson.duration}
+                        </p>
+
+                      </div>
+
+                      <div className="text-2xl">
+
+                        {completed && "✅"}
+
+                        {current && "▶️"}
+
+                        {locked && "🔒"}
+
+                      </div>
+
+                    </Link>
+                  );
+                })}
 
               </div>
 
             </div>
+
           ))}
 
         </div>

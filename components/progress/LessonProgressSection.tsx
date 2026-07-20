@@ -1,16 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import ProgressBar from "./ProgressBar";
 import LessonProgress from "./LessonProgress";
 import ContinueLearning from "./ContinueLearning";
-
-import {
-  isLessonCompleted,
-  saveCompletedLesson,
-  getCompletedLessons,
-} from "@/lib/progress";
 
 interface LessonProgressSectionProps {
   currentSlug: string;
@@ -22,32 +15,17 @@ interface LessonProgressSectionProps {
 }
 
 export default function LessonProgressSection({
-  currentSlug,
-  totalLessons,
   nextLesson,
 }: LessonProgressSectionProps) {
-  const [completed, setCompleted] = useState(false);
-  const [completedCount, setCompletedCount] = useState(0);
 
-  useEffect(() => {
-    setCompleted(isLessonCompleted(currentSlug));
-    setCompletedCount(getCompletedLessons().length);
-  }, [currentSlug]);
+  const [completed, setCompleted] = useState(false);
 
   function handleComplete() {
-    saveCompletedLesson(currentSlug);
-
     setCompleted(true);
-    setCompletedCount(getCompletedLessons().length);
   }
 
   return (
     <>
-      <ProgressBar
-        completed={completedCount}
-        total={totalLessons}
-      />
-
       <LessonProgress
         completed={completed}
         onComplete={handleComplete}

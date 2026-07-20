@@ -6,8 +6,8 @@ export interface Lesson {
   description: string;
   duration: string;
   type: LessonType;
-  completed: boolean;
-  locked: boolean;
+  completed?: boolean;
+  locked?: boolean;
 }
 
 export interface Module {
@@ -43,8 +43,7 @@ export const excelCourse: ExcelCourse = {
             "Welcome to the Advanced Excel Masterclass. In this lesson you will understand what Excel is and where it is used in real life.",
           duration: "5 min",
           type: "Video",
-          completed: true,
-          locked: false,
+          
         },
 
         {
@@ -54,8 +53,7 @@ export const excelCourse: ExcelCourse = {
             "Learn about the Ribbon, Quick Access Toolbar, Formula Bar, Name Box, Status Bar and Worksheet area.",
           duration: "8 min",
           type: "Video",
-          completed: true,
-          locked: false,
+          
         },
 
         {
@@ -65,8 +63,7 @@ export const excelCourse: ExcelCourse = {
             "Learn how to create basic Excel formulas, understand automatic calculations, and solve real-world problems using formulas.",
           duration: "12 min",
           type: "Video",
-          completed: false,
-          locked: false,
+         
         },
 
         {
@@ -76,8 +73,7 @@ export const excelCourse: ExcelCourse = {
             "Master the SUM function to quickly add numbers across rows, columns, and multiple ranges.",
           duration: "15 min",
           type: "Video",
-          completed: false,
-          locked: true,
+          
         },
 
         {
@@ -87,8 +83,7 @@ export const excelCourse: ExcelCourse = {
             "Learn how to calculate averages efficiently using the AVERAGE function.",
           duration: "10 min",
           type: "Video",
-          completed: false,
-          locked: true,
+          
         },
       ],
     },
@@ -105,8 +100,7 @@ export const excelCourse: ExcelCourse = {
             "Learn to create professional Excel charts and visualize your data.",
           duration: "20 min",
           type: "Video",
-          completed: false,
-          locked: true,
+          
         },
 
         {
@@ -116,8 +110,7 @@ export const excelCourse: ExcelCourse = {
             "Understand Pivot Tables and analyze large datasets easily.",
           duration: "25 min",
           type: "Video",
-          completed: false,
-          locked: true,
+          
         },
 
         {
@@ -127,8 +120,7 @@ export const excelCourse: ExcelCourse = {
             "Build an interactive Excel dashboard using charts, slicers, and KPIs.",
           duration: "30 min",
           type: "Video",
-          completed: false,
-          locked: true,
+          
         },
       ],
     },

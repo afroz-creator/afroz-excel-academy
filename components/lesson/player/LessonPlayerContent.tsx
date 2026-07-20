@@ -5,7 +5,7 @@ import ComparisonTable from "@/components/lesson/ui/ComparisonTable";
 import HistoryTimeline from "@/components/lesson/ui/HistoryTimeline";
 import ShortcutTable from "@/components/lesson/ui/ShortcutTable";
 
-import ExplanationBox from "@/components/lesson/ui/ExplanationBox";
+
 import TipBox from "@/components/lesson/ui/TipBox";
 import WarningBox from "@/components/lesson/ui/WarningBox";
 import FormulaBox from "@/components/lesson/ui/FormulaBox";
@@ -13,6 +13,9 @@ import PracticeBox from "@/components/lesson/ui/PracticeBox";
 import ImageBox from "@/components/lesson/ui/ImageBox";
 
 import QuizBox from "@/components/lesson/ui/QuizBox";
+import CompleteLessonButton from "@/components/dashboard/CompleteLessonButton";
+import ExplanationBox from "@/components/lesson/ui/ExplanationBox";
+
 
 interface LessonPlayerContentProps {
   lesson: Lesson;
@@ -264,6 +267,39 @@ export default function LessonPlayerContent({
           ))}
 
         </ol>
+
+      </div>
+
+      {/* Lesson Complete */}
+      <div className="rounded-3xl border border-green-200 bg-green-50 p-8 shadow-sm">
+
+        <h2 className="mb-4 text-3xl font-bold text-green-700">
+          🎉 Lesson Complete
+        </h2>
+
+        <p className="mb-6 text-gray-700">
+          Agar aapne ye lesson complete kar liya hai to niche button par click karein.
+        </p>
+
+        <div className="rounded-xl bg-white p-6 shadow-sm">
+
+          <ul className="mb-6 space-y-2 text-gray-700">
+
+            <li>✅ Lesson Progress Save hogi</li>
+
+            <li>✅ Next Lesson Unlock hoga</li>
+
+            <li>✅ Dashboard Update hoga</li>
+
+            <li>✅ Course Progress Update hogi</li>
+
+            <li>✅ Certificate Progress Update hogi</li>
+
+          </ul>
+
+          <CompleteLessonButton lessonId={lesson.id} />
+
+        </div>
 
       </div>
 

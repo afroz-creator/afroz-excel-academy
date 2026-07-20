@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { User } from "firebase/auth";
+
 import {
   ChevronDown,
   UserCircle,
@@ -27,6 +28,7 @@ export default function UserDropdown({
   return (
     <div className="relative">
 
+      {/* User Button */}
       <button
         onClick={() => setOpen(!open)}
         className="flex items-center gap-2 rounded-xl border border-green-200 bg-green-50 px-4 py-2 transition hover:bg-green-100"
@@ -44,9 +46,11 @@ export default function UserDropdown({
         />
       </button>
 
+      {/* Dropdown */}
       {open && (
-        <div className="absolute right-0 mt-3 w-72 rounded-2xl border bg-white shadow-xl">
+        <div className="absolute right-0 mt-3 w-72 overflow-hidden rounded-2xl border bg-white shadow-2xl z-50">
 
+          {/* Header */}
           <div className="border-b p-5">
 
             <p className="text-sm text-gray-500">
@@ -54,28 +58,31 @@ export default function UserDropdown({
             </p>
 
             <h3 className="mt-1 text-lg font-bold">
-              {user.displayName}
+              {user.displayName || "Student"}
             </h3>
 
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 break-all">
               {user.email}
             </p>
 
           </div>
 
+          {/* Menu */}
           <div className="p-2">
 
             <Link
               href="/profile"
-              className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-gray-100"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-gray-100"
             >
               <UserCircle size={20} />
               My Profile
             </Link>
 
             <Link
-              href="/dashboard"
-              className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-gray-100"
+              href="/course"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-gray-100"
             >
               <BookOpen size={20} />
               My Courses
@@ -83,7 +90,8 @@ export default function UserDropdown({
 
             <Link
               href="/downloads"
-              className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-gray-100"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-gray-100"
             >
               <Download size={20} />
               My Downloads
@@ -91,7 +99,8 @@ export default function UserDropdown({
 
             <Link
               href="/certificates"
-              className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-gray-100"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-gray-100"
             >
               <Award size={20} />
               Certificates
@@ -99,7 +108,8 @@ export default function UserDropdown({
 
             <Link
               href="/settings"
-              className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-gray-100"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-gray-100"
             >
               <Settings size={20} />
               Settings
@@ -107,11 +117,15 @@ export default function UserDropdown({
 
           </div>
 
+          {/* Logout */}
           <div className="border-t p-2">
 
             <button
-              onClick={onLogout}
-              className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-red-600 hover:bg-red-50"
+              onClick={() => {
+                setOpen(false);
+                onLogout();
+              }}
+              className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-red-600 transition hover:bg-red-50"
             >
               <LogOut size={20} />
               Logout

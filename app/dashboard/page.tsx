@@ -1,18 +1,17 @@
-import CompleteLessonButton from "@/components/dashboard/CompleteLessonButton";
-import UserMenu from "@/components/dashboard/UserMenu";
 import AuthGuard from "@/components/auth/AuthGuard";
 
 import UserWelcome from "@/components/dashboard/UserWelcome";
+
 import DashboardHero from "@/components/dashboard/DashboardHero";
 import StatisticsCards from "@/components/dashboard/StatisticsCards";
+import CircularProgress from "@/components/dashboard/CircularProgress";
 import WeeklyProgress from "@/components/dashboard/WeeklyProgress";
 import ContinueLearning from "@/components/dashboard/ContinueLearning";
+import ProgressSummary from "@/components/dashboard/ProgressSummary";
 import TodayActivity from "@/components/dashboard/TodayActivity";
 import RecentActivity from "@/components/dashboard/RecentActivity";
-import ProgressSummary from "@/components/dashboard/ProgressSummary";
 import AchievementSystem from "@/components/dashboard/AchievementSystem";
 import DownloadCenter from "@/components/dashboard/DownloadCenter";
-import CircularProgress from "@/components/dashboard/CircularProgress";
 
 import CertificateUnlock from "@/components/certificate/CertificateUnlock";
 import CertificatePreview from "@/components/certificate/CertificatePreview";
@@ -23,13 +22,9 @@ export default function DashboardPage() {
       <main className="mx-auto max-w-7xl space-y-8 px-6 py-8">
 
         {/* Welcome */}
-        <UserWelcome />
-
-        {/* User Menu */}
-        <UserMenu />
-
-        {/* Complete Lesson Button */}
-        <CompleteLessonButton />
+        <div className="w-full">
+          <UserWelcome />
+        </div>
 
         {/* Hero */}
         <DashboardHero />
@@ -37,13 +32,10 @@ export default function DashboardPage() {
         {/* Statistics */}
         <StatisticsCards />
 
-        {/* Premium Dashboard */}
+        {/* Progress */}
         <div className="grid gap-8 lg:grid-cols-2">
-
           <CircularProgress />
-
           <WeeklyProgress />
-
         </div>
 
         {/* Continue Learning */}
@@ -52,8 +44,10 @@ export default function DashboardPage() {
         {/* Progress Summary */}
         <ProgressSummary />
 
+        {/* Today's Activity */}
         <TodayActivity />
 
+        {/* Recent Activity */}
         <RecentActivity />
 
         {/* Achievement */}

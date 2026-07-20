@@ -14,12 +14,12 @@ export default function StatisticsCards() {
 
   if (loading || !student) {
     return (
-      <section>
+      <section className="mt-10">
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {[1, 2, 3, 4].map((item) => (
             <div
               key={item}
-              className="h-36 animate-pulse rounded-2xl bg-gray-200"
+              className="h-44 animate-pulse rounded-3xl bg-gray-200"
             />
           ))}
         </div>
@@ -27,43 +27,46 @@ export default function StatisticsCards() {
     );
   }
 
+  // Safe Values
+  const totalLessons = student.totalLessons ?? 20;
+  const lessonsCompleted = student.lessonsCompleted ?? 0;
+  const progress = student.progress ?? 0;
+  const streak = student.streak ?? 0;
+  const certificates = student.certificates ?? 0;
+
   const stats = [
     {
       title: "Lessons Completed",
-      value: `${student.lessonsCompleted}/${student.totalLessons}`,
+      value: `${lessonsCompleted}/${totalLessons}`,
       subtitle: "Keep Learning",
       icon: BookOpen,
-      color: "text-blue-600",
       bg: "from-blue-500 to-cyan-500",
     },
     {
       title: "Overall Progress",
-      value: `${student.progress}%`,
+      value: `${progress}%`,
       subtitle: "Course Completed",
       icon: TrendingUp,
-      color: "text-green-600",
       bg: "from-green-500 to-emerald-500",
     },
     {
       title: "Learning Streak",
-      value: `${student.streak} Days`,
+      value: `${streak} Days`,
       subtitle: "Stay Consistent",
       icon: Flame,
-      color: "text-orange-600",
       bg: "from-orange-500 to-red-500",
     },
     {
       title: "Certificates",
-      value: `${student.certificates}`,
+      value: `${certificates}`,
       subtitle: "Achievements Earned",
       icon: Trophy,
-      color: "text-yellow-600",
       bg: "from-yellow-500 to-amber-500",
     },
   ];
 
   return (
-    <section>
+    <section className="mt-10">
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {stats.map((item) => {
           const Icon = item.icon;
@@ -74,7 +77,6 @@ export default function StatisticsCards() {
               className="group rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
               <div className="flex items-center justify-between">
-
                 <div>
                   <p className="text-sm font-medium text-gray-500">
                     {item.title}
@@ -94,7 +96,6 @@ export default function StatisticsCards() {
                 >
                   <Icon className="h-8 w-8 text-white" />
                 </div>
-
               </div>
             </div>
           );
