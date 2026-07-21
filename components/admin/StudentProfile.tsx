@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
@@ -9,6 +10,7 @@ interface Props {
 }
 
 interface Student {
+  id?: string
   name?: string;
   email?: string;
   mobile?: string;
@@ -41,9 +43,10 @@ export default function StudentProfile({
         const snap = await getDoc(ref);
 
         if (snap.exists()) {
-          setStudent(
-            snap.data() as Student
-          );
+        setStudent({
+            id: snap.id,
+            ...(snap.data() as Student),
+        });
         }
       } catch (error) {
         console.error(error);
@@ -200,9 +203,12 @@ export default function StudentProfile({
 
       <div className="flex flex-wrap gap-4">
 
-        <button className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700">
-          ✏ Edit Student
-        </button>
+        <Link
+        href={`/admin/students/${student.id}/edit`}
+        className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
+        >
+        ✏ Edit Student
+        </Link>
 
         <button className="rounded-xl bg-yellow-500 px-6 py-3 font-semibold text-white hover:bg-yellow-600">
           🔄 Reset Progress

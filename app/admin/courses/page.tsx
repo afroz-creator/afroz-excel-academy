@@ -1,37 +1,23 @@
-export default function AdminCoursesPage() {
+import CourseTable from "@/components/admin/CourseTable";
+
+export default function CoursesPage() {
   return (
-    <main className="space-y-8">
+    <main className="min-h-screen bg-gray-50 p-8">
+      <div className="mx-auto max-w-7xl">
 
-      <div>
-        <h1 className="text-4xl font-bold">
-          Course Management
-        </h1>
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold">
+            📚 Course Management
+          </h1>
 
-        <p className="mt-2 text-gray-500">
-          Manage all courses here.
-        </p>
-      </div>
-
-      <div className="rounded-3xl border bg-white p-10 shadow-sm">
-
-        <div className="text-center">
-
-          <div className="mb-6 text-6xl">
-            📚
-          </div>
-
-          <h2 className="text-2xl font-bold">
-            Courses Module
-          </h2>
-
-          <p className="mt-3 text-gray-600">
-            This page is under development.
+          <p className="mt-2 text-gray-500">
+            Create, edit and manage all courses.
           </p>
-
         </div>
 
-      </div>
+        <CourseTable />
 
+      </div>
     </main>
   );
 }

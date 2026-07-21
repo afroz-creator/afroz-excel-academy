@@ -171,15 +171,16 @@ export default function StudentTable() {
 
                     {/* Edit Student */}
 
-                    <button
-                      className="rounded-lg p-2 transition hover:bg-yellow-100"
-                      title="Edit Student"
+                    <Link
+                    href={`/admin/students/${student.id}/edit`}
+                    className="rounded-lg p-2 transition hover:bg-yellow-100"
+                    title="Edit Student"
                     >
-                      <Pencil
+                    <Pencil
                         size={18}
                         className="text-yellow-600"
-                      />
-                    </button>
+                    />
+                    </Link>
 
                     {/* Delete Student */}
 

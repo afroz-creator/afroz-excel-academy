@@ -1,4 +1,4 @@
-"use client";
+
 
 "use client";
 
@@ -11,9 +11,7 @@ import {
 
 import { db } from "@/lib/firebase";
 
-import {
-  resetStudentProgress,
-} from "@/lib/admin";
+
 
 interface Props {
   studentId: string;
@@ -103,6 +101,7 @@ export default function EditStudentForm({
 
     await updateDoc(ref, {
       name,
+      email,
       mobile,
       progress: Number(progress),
       currentLesson: Number(currentLesson),
